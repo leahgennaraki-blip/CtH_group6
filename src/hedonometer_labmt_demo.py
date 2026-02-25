@@ -9,7 +9,7 @@ import pandas as pd
 # parents[1] -> hedonometer-project-group6  (项目根目录)
 BASE_DIR = Path(__file__).resolve().parents[1]
 
-# 你的数据文件就在 项目根目录/data/raw/Data_Set_S1.txt
+# 数据文件就在 项目根目录/data/raw/Data_Set_S1.txt
 RAW_PATH = BASE_DIR / "data" / "raw" / "Data_Set_S1.txt"
 
 
@@ -21,9 +21,7 @@ def load_labmt(path: Path = RAW_PATH) -> pd.DataFrame:
     - File may contain metadata/comment lines before the header.
     - Missing ranks are represented as '--'.
     """
-    if not path.exists():
-        # 如果再报错，就会打印出它实际去找的路径，方便你检查
-        raise FileNotFoundError(f"Cannot find data file at: {path}")
+
 
     # 读取整个文件，找到真正的表头行
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
