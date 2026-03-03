@@ -1,5 +1,6 @@
 from load_labmt import load_labmt
-from quantitative_exploration import analyse_disagreement
+from quantitative_exploration import analyse_disagreement 
+from quantitative_exploration import save_csv
 import pandas as pd
 
 
@@ -54,3 +55,5 @@ word_exhibit = pd.DataFrame({
 
 print("Word exhibit:\n", word_exhibit)
 print(word_exhibit.columns)
+
+save_csv(word_exhibit, "Word exhibit", index=False)
