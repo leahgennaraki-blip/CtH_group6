@@ -38,7 +38,7 @@ The file we use is a **tab‑delimited text file** with several metadata lines a
 
 ---
 
-### 2.2 Loading and cleaning the file (Task 1.1)
+
 
 We load the dataset using Python + `pandas` as follows: [7]
 
@@ -63,7 +63,14 @@ After loading and cleaning, our DataFrame has:
 - **10,222 rows**
 - **8 columns**
 
-```text
+
 Shape (rows, cols): (10222, 8)
 
-### 2. Loading and cleaning the file (Task 1.1)
+
+## 3. Quantitative exploration
+
+
+
+
+
+
