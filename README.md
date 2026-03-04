@@ -170,6 +170,6 @@ The most negative words include:
 
 These results do indeed conform to people's perception of happiness.
 
-However, what “makes sense” can also dependent on culture and contents. The happiness scores represent **average judgments from Mechanical Turk workers**, not universal emotional truths. Words may evoke different emotional responses in different communities or contexts. 
+However, what “makes sense” can also dependent on culture and contents. The happiness scores represent average judgments from Mechanical Turk workers, not universal emotional truths. Words may evoke different emotional responses in different communities or contexts. 
 
 All tables referenced in this section are generated automatically by the analysis scripts in `src/` and stored in the `tables/` directory.
