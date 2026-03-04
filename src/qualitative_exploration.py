@@ -30,7 +30,7 @@ highly_contested = analyse_disagreement(df.sort_values("happiness_standard_devia
 
 polar = (
    df[df["happiness_average"].between(4.5, 5.5)]
-   .sort_values("happiness_rank", ascending=False)
+   .sort_values("happiness_standard_deviation", ascending=False)
    .head(5)
    .assign(category="polarizing")
 )
