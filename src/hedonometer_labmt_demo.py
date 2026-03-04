@@ -32,6 +32,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 # -----------------------------------------------------------------------------
@@ -99,8 +100,11 @@ if not DATA_PATH.exists():
 df = pd.read_csv(
     DATA_PATH,
     sep="\t",
+    #sep="\t"：告诉 pandas 这一行里用制表符（tab）分隔列，而不是逗号
     skiprows=3,
+    #skiprows=3：跳过前 3 行 metadata，不当做数据/表头。
     na_values=["--"],
+    #na_values=["--"]：把文本 -- 直接当成缺失值 NaN。
     encoding="utf-8",
     dtype={"word": "string"}
 )
@@ -118,9 +122,16 @@ numeric_cols = [
     "nyt_rank",
     "lyrics_rank",
 ]
-df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
+df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")#errors="coerce"：如果有非数字内容，就变成 NaN（而不是报错）
 
 # Convert all numeric columns together to enforce a consistent numeric schema.
+
+
+#读取 tab 文件 → pd.read_csv
+#跳过注释 → skiprows=3
+#把 -- 变成 NaN → na_values=["--"]
+#数字列变 numeric → pd.to_numeric
+#检查行列数（下一步打印 shape）
 
 df["word"] = df["word"].astype("string")
 
@@ -329,6 +340,69 @@ for i in range(len(labels)):
 
 pairwise_overlap = pd.DataFrame(pairs).sort_values("pair")
 save_csv(pairwise_overlap, "pairwise_overlap_counts.csv", index=False)
+
+# Bar chart (word presence by number of corpora)
+
+pattern_counts['n_corpora'] = pattern_counts['corpora_present'].str.count('1')
+by_categories = pattern_counts.groupby('n_corpora')['n_words'].sum()
+
+plt.figure (figsize=(10, 6))
+y_values = by_categories.values.tolist()
+x_labels = ['0 corpora', '1 corpus', '2 corpora', '3 corpora', '4 corpora']
+colors = ['#999999', '#ff9999', '#66b3ff', '#99ff99', '#ffcc99']
+
+bars = plt.bar(x_labels, y_values, color=colors)
+
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2., height,
+             f'{int(height):,}', ha='center', va='bottom', fontsize=11)
+    
+plt.title('Words by number of corpora they appear in', fontsize=14)
+plt.xlabel('Number of corpora', fontsize=12)
+plt.ylabel('Number of words', fontsize=12)
+
+# for i, v in enumerate(total_per_corpus):
+#     plt.text(i, v + 50, str(v), ha='center', fontsize=10)
+
+plt.tight_layout()
+save_figure("word_presence_by_corpora.png")
+plt.close()
+
+
+# Word overlap Heatmap
+
+corpora = ['twitter', 'google', 'nyt', 'lyrics']
+n = len(corpora)
+
+overlap_matrix = pd.DataFrame(0, index=corpora, columns=corpora)
+
+for _, row in pairwise_overlap.iterrows():
+    pair = row['pair']
+    count = row['n_words_in_both']
+
+    # Split the pair (e.g., "google+lyrics" -> ["google", "lyrics"])
+    c1, c2 = pair.split('+')
+    overlap_matrix.loc[c1, c2] = count
+    overlap_matrix.loc[c2, c1] = count  # Make symmetric
+
+# Add diagonal (words in each corpus)
+for corpus in corpora:
+    overlap_matrix.loc[corpus, corpus] = flags[corpus].sum()
+
+# Create heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(overlap_matrix, 
+            annot=True,  # Show values
+            fmt=',d',    # Format as integers with commas
+            cmap='YlOrRd',  # Color scheme (Yellow-Orange-Red)
+            square=True,  # Make cells square
+            cbar_kws={'label': 'Number of words'})
+
+plt.title('Word Overlaps Between Corpora', fontsize=14, fontweight='bold')
+plt.tight_layout()
+save_figure('word_overlap_heatmap.png')
+plt.close()
 
 # (C) One concrete example: frequent in one corpus, missing in another.
 # Here we look for words that are relatively frequent on Twitter but do NOT appear in NYT's top-5000.
