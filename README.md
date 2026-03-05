@@ -79,11 +79,22 @@ AI is a great help to us quickly learn code and advance tasks. We use it to guid
 
 ### 3.3 Method for qualitative exploration
 
-We first imported the cleaned dataset using the function load_labmt from the data cleaning file load_labmt.py. We also imported the analyse_disagreement function and the save_csv function from the quantitative_exploration.py file, as well as pandas. Our goal was to have the happiness ranks and standard deviations for all words so that we could create our qualitative exploration "Word exhibit". We created separate tables showcasing the 5 most positive, negative, highly contested and polarizing words (the last category was our addition to the requirements of the assignment), as well as their happiness rank and/or (where pertinent) standard deviation. After printing all tables so that we get an idea of what kinds of words make up each category, we created a new table that included all the aforementioned categories in decending order. Lastly, using the save_csv function we saved a comma-delimited file in the tables folder that included our word exhibit.
+We first imported the cleaned dataset using the function load_labmt from the data cleaning file load_labmt.py. We also imported the analyse_disagreement function, the save_csv function and the save_figure function from the quantitative_exploration.py file, as well as pandas and matplotlib.pyplot. Our goal was to have the happiness ranks and standard deviations for all words so that we could create our qualitative exploration "Word exhibit". We created separate tables showcasing the 5 most positive, negative, highly contested and polarizing words (the last category was our addition to the requirements of the assignment), as well as their happiness rank and/or (where pertinent) standard deviation. After printing all tables so that we get an idea of what kinds of words make up each category, we created a new table that included all the aforementioned categories in decending order. Using the save_csv function we saved a comma-delimited file in the tables folder that included our word exhibit.
+Lastly, we created two  .png files, one with the separate categories we looked into and their happiness rank/standard deviation and one with the word exhibit as a summative plot.
 
 ## 4. Result section 
 
+### 4.1 Quantitative exploration
 
+### 4.2 Qualitative exploration
+
+![Top 5 words and their ranks/standard deviation in categories: very positive, very negative, highly contested, and polarizing](figures/Top_5_separate.png)
+
+The file shows 4 tables of the 5 most positive, 5 most negative, 5 of the most highly contested and 5 of the most polarizing words and their happiness ranks and/or standard deviation as needed.
+
+! [The "Word exhibit" table](figures/word_exhibit.png)
+
+The file includes the categories and words mentioned in the Top_5_separate.png in one table without their ranks nor their standard deviation.
 
 ## 5. Qualitative "exhibit" of words
 
@@ -195,3 +206,6 @@ Tianye's responsibilities included initial cleaning and categorizing of raw data
 Leah's responsibilities included creating the qualitative exploration word exhibit. Collaborated with Sisi and Yuki on the critical reflection (mainly 4.2 and the last part of 4.3) and oversaw the editing of the README.md (especially pertaining to the critical analysis and conclusions).
 
 Chrysoula was responsible for parts of the qualitative exploration and of the critical reflection of the dataset. Her work included generating a qualitative exhibit of words and conducting an interpretive analysis of the dataset, with a particular focus on disagreement, neutrality, deviation, and the polarising effect. She also wrote the reconstruction of the data pipeline, paying close attention to the Dodds reading, and contributed to the discussion of dataset design choices by writing Choices 1, 2, and 3.
+
+
+[def]: image-1.png
