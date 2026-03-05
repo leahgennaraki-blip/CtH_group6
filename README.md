@@ -69,6 +69,11 @@ Shape (rows, cols): (10222, 8)
 
 ## 3. Method section 
 
+### 3.1 The usage of AI tools
+ 
+Due to the tight deadline and the lack of strong programming skills among our group members, we utilized intelligent tools, including UVA AI, to assist in writing and modifying the code. First, we reviewed the course content and project guidelines to understand the coding techniques required for this exercise. When writing code to clean the data, we followed the task's logical requirements, with AI guiding our code writing. During this process, we encountered code errors, possibly caused by an error in the AI's file path specification. We needed to modify the AI's suggestions based on our local operating environment and file paths, ultimately completing the cleaning and organization of the raw data. Generating relevant statistical charts for qualitative and quantitative analysis proved challenging. Again, we relied on intelligent tools to ensure the generated charts accurately reflected the required data while being neat and aesthetically pleasing. To ensure every group member fully understood the code, we had the AI ​​provide a detailed explanation of each line, including its function and the programming techniques used. We then used Python's comment function (#) to annotate these points of difficulty below the corresponding lines of code.
+
+AI is a great help to us quickly learn code and advance tasks. We use it to guide us in writing code and help us analyze errors. At the same time, we don't forget not to lose control of the code. We require the AI ​​to interpret everything it generates to ensure that the entire project is always under our control, and to let the AI ​​only serve as an auxiliary tool to provide technical support.
 
 
 
@@ -98,8 +103,9 @@ Our deliberate choice of polarizing words as an additional concept we can use to
 ## 7. How to run the code 
 
 ## 8. Crdits and role
+Before starting our group task, we divided the work according to the requirements.
 
-
+Kevin's responsibilities included managing the Git repository and coordinating the synchronization process. Git repositories are efficient tools for sharing code and collaborating, but most of our group members had never used Git before. Therefore, Kevin first familiarized himself with Git repositories, helped create the job's reprocitories, and guided the others in linking them. We also discovered that if multiple people were editing code simultaneously, Git might encounter errors when pushing updates, so coordinating the editing order and timing was crucial.
 
 
 
