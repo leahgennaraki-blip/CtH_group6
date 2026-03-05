@@ -208,7 +208,7 @@ Our deliberate choice of polarizing words as an additional concept we can use to
 
 ## 6. Critical reflection 
 
-### 4.1 Reconstruct the pipeline (data provenance)
+### 6.1 Reconstruct the pipeline (data provenance)
 
 Dodds et al:
 
@@ -221,7 +221,7 @@ The aggregated ratings of each word were used to compute the average happiness s
 The dataset was then organised so that each word is associated with its happiness rank, its individual happiness score, its happiness standard deviation and the frequency rank for that word in the 4 text corpora. The happiness rank column is the ordering of words after the average happiness score is calculated.
 As a validation step, the resulting happiness scores were compared with those from the earlier ANEW lexicon and showed a very high correlation, suggesting that the ratings were reliable.
 						
-### 4.2 Consequences and limitations (your critical argument) 
+### 6.2 Consequences and limitations (your critical argument) 
 
 **Choice 1**: Measuring happiness on a 1–9 numerical scale
   What they did:
@@ -272,7 +272,7 @@ As a validation step, the resulting happiness scores were compared with those fr
   Example: 
   The word “mean” can be used as a negative adjective or as a neutral verb. The model assigns one fixed happiness score to “mean” and does not distinguish between these uses. Therefore, neutral phrases like “I mean…” may be interpreted as carrying negative emotion. “Word!” (what the hedonometer reads here is  “word”) has a highly positive and emphatic meaning when used by specific communities and demographics.
 
-### 4.3 If you were to use this dataset as an instrument today... 
+### 6.3 If you were to use this dataset as an instrument today... 
 
 #### What would you trust this dataset to measure well?
 The dataset is particularly reliable for detecting large-scale mood shifts over time. Random noise and individual-level variation tend to average out when applied to millions of words. This makes the instrument suited for identifying long-term trends and emotional reactions to major public events at the macro level. It can also indicate general patterns in how people typically use words to express positive or negative emotion across common contexts. 
