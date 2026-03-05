@@ -1,7 +1,10 @@
 from load_labmt import load_labmt
 from quantitative_exploration import analyse_disagreement 
 from quantitative_exploration import save_csv
+from quantitative_exploration import save_figure
 import pandas as pd
+import matplotlib.pyplot as plt
+
 
 
 df = load_labmt()
@@ -57,3 +60,53 @@ print("Word exhibit:\n", word_exhibit)
 print(word_exhibit.columns)
 
 save_csv(word_exhibit, "Word exhibit", index=False)
+
+vp_tbl = very_positive[["word", "happiness_rank"]]
+vn_tbl = very_negative[["word", "happiness_rank"]]
+hc_tbl = highly_contested[["word", "happiness_standard_deviation"]]
+p_tbl  = polar[["word", "happiness_average", "happiness_standard_deviation"]]
+
+tables = [
+    ("Very positive", vp_tbl),
+    ("Very negative", vn_tbl),
+    ("Highly contested", hc_tbl),
+    ("Polarizing", p_tbl),
+]
+
+fig, axes = plt.subplots(2, 2, figsize=(14, 6))
+
+for ax, (title, df_sub) in zip(axes.flat, tables):
+    ax.axis("off")            # no axes
+    ax.set_title(title, fontweight="bold", pad=10)
+
+    table = ax.table(
+        cellText=df_sub.values,
+        colLabels=df_sub.columns,
+        loc="center"
+    )
+
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1, 1.5)       # (width, height) scaling
+
+plt.tight_layout()
+
+save_figure("Top_5_separate")
+
+fig, ax = plt.subplots(figsize=(10, 2.5))
+ax.axis("off")
+ax.set_title("Word exhibit", fontweight="bold", pad=10)
+
+table = ax.table(
+    cellText=word_exhibit.values,
+    colLabels=word_exhibit.columns,
+    loc="center"
+)
+
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1, 1.5)
+
+plt.tight_layout()
+
+save_figure("word_exhibit")

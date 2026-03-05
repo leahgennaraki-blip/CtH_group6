@@ -38,8 +38,6 @@ The file we use is a **tab‑delimited text file** with several metadata lines a
 
 ---
 
-
-
 We load the dataset using Python + `pandas` as follows: [7]
 
 - We read the raw tab‑delimited file `data/raw/Data_Set_S1.txt`.
