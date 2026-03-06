@@ -237,13 +237,13 @@ Most words cluster around a happiness score of about 5–6, where the standard d
 
 For each corpus there are 5000 labMT words with a recorded rank. This indicates that the labMT dataset contains sentiment scores for all the top 5000 most frequent words in each of these corpora. In other words, the sentiment lexicon has full coverage of the top-frequency vocabulary across these four text sources, allowing consistent sentiment analysis across social media (Twitter), books (Google), news (NYT), and music lyrics.
 
-![Figure 3](figures\bar_word_presence_by_corpora.png)
+![Figure 3](figures/bar_word_presence_by_corpora.png)
 ***Figure 3:** Frequency of words across the number of corpora they are present in*
 
-![Figure 4](figures\heatmap_word_overlap.png)
+![Figure 4](figures/heatmap_word_overlap.png)
 ***Figure 4:** Heatmap showing pairwise overlap between each corpus*
 
-![Figure 5](figures\scatter_twitter_rank_vs_nyt_rank.png)
+![Figure 5](figures/scatter_twitter_rank_vs_nyt_rank.png)
 ***Figure 5:** Scatter plot for frequency ranks and happiness scores for common words in Twitter and NYT. Words are plotted for their rank in twitter against rank in NYT. The colour scale represents happiness scores.*
 
 
