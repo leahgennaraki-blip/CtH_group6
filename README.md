@@ -183,6 +183,12 @@ Lastly, we created two  .png files, one with the separate categories we looked i
 
 ### 4.1 Quantitative exploration
 
+![distribution of happiness average in labmt 1.0](figures/happiness_average_hist.png)
+
+![Happiness score vs disagreement: Happiness average vs standard deviation](figures/happiness_vs_std_scatter.png)
+
+![How many lamt 1.0 words appear in each corpus top-5000](figures/corpus_rank_coverage_bar.png)
+
 ### 4.2 Qualitative exploration
 
 ![Top 5 words and their ranks/standard deviation in categories: very positive, very negative, highly contested, and polarizing](figures/Top_5_separate.png)
