@@ -1,4 +1,4 @@
-<img width="1280" height="960" alt="happiness_vs_std_scatter" src="https://github.com/user-attachments/assets/dc6c5d9d-6e3e-49f0-8593-958c4edb841f" /># Happiness According to Mechanical Turks: Exploring the labMT 1.0 Hedonometer Dataset
+# Happiness According to Mechanical Turks: Exploring the labMT 1.0 Hedonometer Dataset
 
 This repository explores the **labMT 1.0** (“language assessment by Mechanical Turk”) dataset used to build a large‑scale *hedonometer* for English text, originally introduced by Dodds et al. (2011). We combine basic quantitative analysis (distributions, corpus comparisons) with qualitative close reading of selected words to reflect on what this dataset can – and cannot – tell us about “happiness” in language. [3][8]
 
