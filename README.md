@@ -174,9 +174,15 @@ AI is a great help to us quickly learn code and advance tasks. We use it to guid
 
 ### 3.2 Method for quantitative exploration
 
-We examined the distribution of happiness_average scores by computing summary statistics and visualizing the distribution with a histogram.
-We quantified disagreement using happiness_standard_deviation, plotted it against happiness_average, and identified the 15 words with the highest standard deviation as the most “contested”.
-Using corpus-specific rank fields (Twitter, Google Books, New York Times, song lyrics), we calculated coverage (number of words with non-missing ranks), pairwise overlaps between corpora, and highlighted words highly ranked in Twitter but absent from the NYT top 5000. All tables were exported as cvs and figures saved as .png.
+We used the cleaned data from `load_labmt` containing 10222 words with happiness scores (`happiness_average`) disagreemnent scores (`happiness_standard_deviation`), and frequency ranks across four corpora (`twitter_rank`, `google_rank`, `nyt_rank`, `lyrics_rank`).
+
+The packages `pandas`, `matplotlib.pyplot`, `numpy`, and `seaborn` were imported for data processing and visualisation. Helper functions `print_section()`, `save_csv()` and `save_figure()` were used to organise output and save results to `tables/` and `figures/` directories. All figures and tables were saved as `.png` and `.csv` files respectively.
+
+We calculated summary statistics (count, mean, median, std, 5th/95th percentiles) and created a histogram to visualise the distribution of `happiness_average` across all words (Task 2.1). 
+
+Then we ploted `happiness_average` and `happiness_standard_deviation` to visualise the relationship between disagreement for the happiness associated with words. THe 15 words with highest standard deviation were identified as 'most-contested' (Task 2.2). Additionally, we created four separate plots showing words unique to each corpus coloured by their frequency ranks to examine whether corpora specific show distinct happiness/disagreement patterns. Finally, we calculated coverage (how many words appear in each corpus's top 5000) which was visualised on a bar plot. 
+
+We generated binary flags for corpus presence and analysed overlap patterns, creating a pairwise overlap table and a heatmap with the upper triangle masked to avoid redundancy. We also plotted common words on the twitter rank against NYT rank, coloured by happiness scores, to compare frequency (and happiness) patterns between a social media corpus and a news corpus (Task 2.3). Finally we identified a word that is common on twitter but missing from NYT as an example of corpus differences.
 
 ### 3.3 Method for qualitative exploration
 
@@ -187,23 +193,71 @@ Lastly, we created two  .png files, one with the separate categories we looked i
 
 ### 4.1 Quantitative exploration
 
-![distribution of happiness average in labmt 1.0](figures/happiness_average_hist.png)
+#### Distribution of happiness scores
 
-Happiness scores in the labMT lexicon follow an approximately normal distribution centered slightly above neutral (~5.4), indicating a well-known positivity bias in human language where most words are neutral to mildly positive and strongly valenced words are comparatively rare.
+![Figure 1](figures\hist_happiness_average.png)
+***Figure 1:*** The histogram shows frequency of word appearences across happiness for all 10022 words in the labMT 1.0 dataset. 
 
+**Interpretation:** Happiness scores in the labMT lexicon follow an approximately normal distribution centered slightly above neutral (~5.4), indicating a well-known positivity bias in human language where most words are neutral to mildly positive and strongly valenced words are comparatively rare.
 
+**Unexpected pattern:** Although the distribution appears to be slightly skewed towards the positive scores, the mean (5.38) is very close to the midpoint of the scale (5). One might expect words to be rated more towards the extremes (positive or negative), but the plot suggests perception towards most words are emotionally neutral.
 
-<img width="1280" height="960" alt="happiness_vs_std_scatter" src="https://github.com/user-attachments/assets/dd975dd3-6b7d-42fe-9a15-4bcec82f73ee" />
+### Contested words
+
+![Figure 2](figures\scatter_happiness_vs_std.png)
+***Figure 2:** Scatter plot for word occurences by their happiness scores against happiness standard deviations*
 
 Most words cluster around a happiness score of about 5–6, where the standard deviation is relatively low, indicating that annotators generally agree on the emotional valence of neutral or slightly positive words. As words become more extremely negative or positive, the standard deviation tends to increase slightly, suggesting greater disagreement among annotators about the emotional meaning of these words. Overall, the plot indicates that while most words have moderate happiness scores with relatively consistent ratings, words with stronger emotional connotations tend to produce more variability in human judgments.
 
+**5 of the 15 most disagreed words:**
+
+- `fuck` (and its other inflected/compounded forms)
+
+  **Profanity/irony/intensifier:** can be associated with taboo in its literal sense, and when used as an intensifier it can still have a negative meaning (for eg: anger), as well as a non-negative one ("fucking awesome")
+
+- `slut`
+
+  **Profanity/Cultural reference:** derogatory term but some communities have reclaimed to bring empowerment and to counter the previous derogatory connotations the label attaches to its referent 
+
+- `pussy`
+
+  **Profanity/ambiguity:** Multiple meanings: cat (expected to be perceived as neutral or positive), female genitalia (taboo), and coward (misogynistic language). The later two meanings with negative implications contest with the neutral/positive meaning 'cat'. 
+
+- `churches`
+
+  **Cultural reference:** positive for religious individual, negative for those opposed to organised religion/christianity. 
+
+- `capitalism`
+
+  **Cultural reference:** perception polarised due to political views, can be associated with exploitation (negative)    
+
+**Connection to quantitative pattern:** All five words except for `churches` have happiness scores lower than but not too far from the mean (`capitalism` comes close with 5.16), and all have SD > 2. This suggests that people are split, but not necessarily in terms of extremes of happiness.
+
+### Rank comparisions & overlaps
+
+For each corpus there are 5000 labMT words with a recorded rank. This indicates that the labMT dataset contains sentiment scores for all the top 5000 most frequent words in each of these corpora. In other words, the sentiment lexicon has full coverage of the top-frequency vocabulary across these four text sources, allowing consistent sentiment analysis across social media (Twitter), books (Google), news (NYT), and music lyrics.
+
+![Figure 3](figures\bar_word_presence_by_corpora.png)
+***Figure 3:** Frequency of words across the number of corpora they are present in*
+
+![Figure 4](figures\heatmap_word_overlap.png)
+***Figure 4:** Heatmap showing pairwise overlap between each corpus*
+
+![Figure 5](figures\scatter_twitter_rank_vs_nyt_rank.png)
+***Figure 5:** Scatter plot for frequency ranks and happiness scores for common words in Twitter and NYT. Words are plotted for their rank in twitter against rank in NYT. The colour scale represents happiness scores.*
 
 
-![How many lamt 1.0 words appear in each corpus top-5000](figures/corpus_rank_coverage_bar.png)
+**Interpretation**
 
-Every bar reaches 5000, meaning that for each corpus there are 5000 labMT words with a recorded rank. This indicates that the labMT dataset contains sentiment scores for all the top 5000 most frequent words in each of these corpora. In other words, the sentiment lexicon has full coverage of the top-frequency vocabulary across these four text sources, allowing consistent sentiment analysis across social media (Twitter), books (Google), news (NYT), and music lyrics.
+- Although not as high as non-unique words (total: 5299), there are significant number of corpus unique words (4596)
 
+- Two patterns emerge from the heatmap: 
+  - Higher overlap between google and nyt: suggesting common words represent less usage of informal language conventions in these corpora
+  - Higher overlap between twitter and lyrics: suggesting common words represent freer usage of informal language conventions
 
+**Word that is common in twitter but missing in NYT**
+
+`im:` people find it easier to freely use word contractions and colloquial spelling conventions in a social media platform, whereas writers for a media page do not have such freedom (yet) due to strong prescriptive attitudes toward standardised language usage in formal contexts.
 
 ### 4.2 Qualitative exploration
 
@@ -211,7 +265,17 @@ Every bar reaches 5000, meaning that for each corpus there are 5000 labMT words 
 
 The file shows 4 tables of the 5 most positive, 5 most negative, 5 of the most highly contested and 5 of the most polarizing words and their happiness ranks and/or standard deviation as needed.
 
-! [The "Word exhibit" table](figures/word_exhibit.png)
+![The "Word exhibit" table](figures/word_exhibit.png)
+
+The file includes the categories and words mentioned in the Top_5_separate.png in one table without their ranks nor their standard deviation.
+
+### 4.2 Qualitative exploration
+
+![Top 5 words and their ranks/standard deviation in categories: very positive, very negative, highly contested, and polarizing](figures/Top_5_separate.png)
+
+The file shows 4 tables of the 5 most positive, 5 most negative, 5 of the most highly contested and 5 of the most polarizing words and their happiness ranks and/or standard deviation as needed.
+
+![The "Word exhibit" table](figures/word_exhibit.png)
 
 The file includes the categories and words mentioned in the Top_5_separate.png in one table without their ranks nor their standard deviation.
 
@@ -315,7 +379,7 @@ We would:
 
 ## 7. How to run the code 
 
-The files in src/ include the runable code for this project. Starting from src/load_labmt.py to load the cleaned data, we then moved to quantitative_exploration.py where the standard deviation, average happiness etc are calculated in the form of reusable functions and where relevant plots (happiness_average_hist.png, happiness_vs_std_scatter.png, corpus_rank_coverage_bar.png) are created and saved in figures/. By running the code in qualitative_exploration.py, we are entering the final stage of the project in its current form, where the 5 most positive, most negative, highly contested and polarizing words are are fetched. The code in qualitative_exploration.py also generates the two plots relating to 1. the 4 aforementioned categories (Top_5_separate.png) and 2. the "word exhibit" (word_exhibit.png). 
+The files in src/ include the runable code for this project. Starting from src/load_labmt.py to load the cleaned data, we then moved to quantitative_exploration.py where the standard deviation, average happiness etc are calculated in the form of reusable functions and where relevant plots (hist_happiness_average.png, scatter_happiness_vs_std.png, bar_corpus_rank_coverage.png) are created and saved in figures/. By running the code in qualitative_exploration.py, we are entering the final stage of the project in its current form, where the 5 most positive, most negative, highly contested and polarizing words are are fetched. The code in qualitative_exploration.py also generates the two plots relating to 1. the 4 aforementioned categories (Top_5_separate.png) and 2. the "word exhibit" (word_exhibit.png).
 
 ## 8. Credits and role
 Before starting our group task, we divided the work according to the requirements.
