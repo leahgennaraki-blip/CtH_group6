@@ -299,6 +299,8 @@ We would:
 
 ## 7. How to run the code 
 
+The files in src/ include the runable code for this project. Starting from src/load_labmt.py to load the cleaned data, we then moved to quantitative_exploration.py where the standard deviation, average happiness etc are calculated in the form of reusable functions and where relevant plots (happiness_average_hist.png, happiness_vs_std_scatter.png, corpus_rank_coverage_bar.png) are created and saved in figures/. By running the code in qualitative_exploration.py, we are entering the final stage of the project in its current form, where the 5 most positive, most negative, highly contested and polarizing words are are fetched. The code in qualitative_exploration.py also generates the two plots relating to 1. the 4 aforementioned categories (Top_5_separate.png) and 2. the "word exhibit" (word_exhibit.png). 
+
 ## 8. Credits and role
 Before starting our group task, we divided the work according to the requirements.
 
