@@ -195,7 +195,7 @@ Lastly, we created two  .png files, one with the separate categories we looked i
 
 #### Distribution of happiness scores
 
-![Figure 1](figures\hist_happiness_average.png)
+![Figure 1](figures/hist_happiness_average.png)
 ***Figure 1:*** The histogram shows frequency of word appearences across happiness for all 10022 words in the labMT 1.0 dataset. 
 
 **Interpretation:** Happiness scores in the labMT lexicon follow an approximately normal distribution centered slightly above neutral (~5.4), indicating a well-known positivity bias in human language where most words are neutral to mildly positive and strongly valenced words are comparatively rare.
@@ -204,7 +204,7 @@ Lastly, we created two  .png files, one with the separate categories we looked i
 
 ### Contested words
 
-![Figure 2](figures\scatter_happiness_vs_std.png)
+![Figure 2](figures/scatter_happiness_vs_std.png)
 ***Figure 2:** Scatter plot for word occurences by their happiness scores against happiness standard deviations*
 
 Most words cluster around a happiness score of about 5–6, where the standard deviation is relatively low, indicating that annotators generally agree on the emotional valence of neutral or slightly positive words. As words become more extremely negative or positive, the standard deviation tends to increase slightly, suggesting greater disagreement among annotators about the emotional meaning of these words. Overall, the plot indicates that while most words have moderate happiness scores with relatively consistent ratings, words with stronger emotional connotations tend to produce more variability in human judgments.
