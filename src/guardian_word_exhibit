@@ -56,3 +56,40 @@ word_df["happiness_std"] = word_df["word"].map(word_to_std)
 
 print(word_df)
 save_csv(word_df, "guardian_word_scores", index=False)
+
+word_df = word_df.dropna(subset=["happiness_score"])
+
+# 5 very positive (highest happiness)
+very_positive = (
+    word_df.sort_values("happiness_score", ascending=False).drop_duplicates()
+      .head(10)
+      .assign(category="very positive")
+)
+
+# 5 very negative (lowest happiness)
+very_negative = (
+    word_df.sort_values("happiness_score", ascending=True).drop_duplicates()
+      .head(10)
+      .assign(category="very negative")
+)
+
+
+print("Very positive:\n", very_positive[["word", "happiness_score"]])
+print("\nVery negative:\n", very_negative[["word", "happiness_score"]])
+save_csv(very_positive, "guardian_10_positive", index=False)
+save_csv(very_negative, "guardian_10_negative", index=False)
+
+vp_words = very_positive["word"].reset_index(drop=True)
+vn_words = very_negative["word"].reset_index(drop=True)
+
+vp_tbl = very_positive[["word", "happiness_score"]]
+vn_tbl = very_negative[["word", "happiness_score"]]
+
+vp_tbl = very_positive[["word", "happiness_score"]]
+vn_tbl = very_negative[["word", "happiness_score"]]
+
+tables = [
+    ("Very positive", vp_tbl),
+    ("Very negative", vn_tbl)
+]
+
