@@ -12,15 +12,12 @@ processed_path = Path("data/processed/guardian_articles_processed.csv")
 df = pd.read_csv(processed_path)
 print("Loaded processed articles:", df.shape)
 
-    # 2. 加载 labMT 词典
 labmt_path = Path("data/raw/Data_Set_S1.txt")
 labmt_df = load_labmt(labmt_path)
 
-    # === 根据你实际的列名修改下面两个变量 ===
-word_col = "word"               # 单词列
-score_col = "happiness_average" # happiness 列
+word_col = "word"               
+score_col = "happiness_average" 
 std_col = "happiness_standard_deviation"
-    # =======================================
 
 word_to_score = dict(zip(labmt_df[word_col], labmt_df[score_col]))
 word_to_std = dict(zip(labmt_df[word_col], labmt_df[std_col]))
