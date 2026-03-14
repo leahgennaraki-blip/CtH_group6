@@ -14,33 +14,33 @@ df = df.dropna(subset=["happiness_rank"])
 
 # 5 very positive (highest happiness)
 very_positive = (
-    df.sort_values("happiness_rank", ascending=True)
-      .head(5)
+    df.sort_values("happiness_average", ascending=False)
+      .head(10)
       .assign(category="very positive")
 )
 
 # 5 very negative (lowest happiness)
 very_negative = (
-    df.sort_values("happiness_rank", ascending=False)
-      .head(5)
+    df.sort_values("happiness_average", ascending=True)
+      .head(10)
       .assign(category="very negative")
 )
 
 #5 highly contested (high standard deviation)
 highly_contested = analyse_disagreement(df.sort_values("happiness_standard_deviation", ascending=False)
-        .head(5)
+        .head(10)
     )
 
 polar = (
    df[df["happiness_average"].between(4.5, 5.5)]
    .sort_values("happiness_standard_deviation", ascending=False)
-   .head(5)
+   .head(10)
    .assign(category="polarizing")
 )
 
-print("Very positive:\n", very_positive[["word", "happiness_rank"]])
-print("\nVery negative:\n", very_negative[["word", "happiness_rank"]])
-print("\nHighly contested:\n", highly_contested[["word", "happiness_standard_deviation"]])
+print("Very positive:\n", very_positive[["word", "happiness_average"]])
+print("\nVery negative:\n", very_negative[["word", "happiness_average"]])
+print("\nHighly contested:\n", highly_contested[["word", "happiness_average", "happiness_standard_deviation"]])
 print("\nPolarizing:\n", polar[["word", "happiness_average", "happiness_standard_deviation"]])
 
 # reset index so they can be aligned row-wise
@@ -61,9 +61,9 @@ print(word_exhibit.columns)
 
 save_csv(word_exhibit, "Word exhibit", index=False)
 
-vp_tbl = very_positive[["word", "happiness_rank"]]
-vn_tbl = very_negative[["word", "happiness_rank"]]
-hc_tbl = highly_contested[["word", "happiness_standard_deviation"]]
+vp_tbl = very_positive[["word", "happiness_average"]]
+vn_tbl = very_negative[["word", "happiness_average"]]
+hc_tbl = highly_contested[["word", "happiness_average", "happiness_standard_deviation"]]
 p_tbl  = polar[["word", "happiness_average", "happiness_standard_deviation"]]
 
 tables = [
@@ -73,7 +73,7 @@ tables = [
     ("Polarizing", p_tbl),
 ]
 
-fig, axes = plt.subplots(2, 2, figsize=(14, 6))
+fig, axes = plt.subplots(2, 2, figsize=(14, 8))
 
 for ax, (title, df_sub) in zip(axes.flat, tables):
     ax.axis("off")            # no axes
@@ -91,11 +91,11 @@ for ax, (title, df_sub) in zip(axes.flat, tables):
 
 plt.tight_layout()
 
-save_figure("Top_5_separate")
+save_figure("labmt_top_10_per_cat")
 
-fig, ax = plt.subplots(figsize=(10, 2.5))
+fig, ax = plt.subplots(figsize=(10, 3))
 ax.axis("off")
-ax.set_title("Word exhibit", fontweight="bold", pad=10)
+ax.set_title("Word exhibit", fontweight="bold", pad=10, y=1.05)
 
 table = ax.table(
     cellText=word_exhibit.values,
@@ -109,4 +109,4 @@ table.scale(1, 1.5)
 
 plt.tight_layout()
 
-save_figure("word_exhibit")
+save_figure("labmt_word_exhibit")
