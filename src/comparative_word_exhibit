@@ -24,12 +24,3 @@ guardian_exhibit_path = f"{TABLES_DIR}/guardian_word_exhibit"  # adjust to your 
 df_labmt = pd.read_csv(labmt_exhibit_path)
 df_guardian = pd.read_csv(guardian_exhibit_path)
 
-df_labmt = df_labmt.add_prefix("labMT 1.0_")
-df_guardian = df_guardian.add_prefix("Guardian_")
-
-df_comparative = pd.concat([df_labmt, df_guardian], axis=1)
-
-print("Comparative word exhibit:\n", df_comparative)
-
-save_csv(df_comparative, "comparative_word_exhibit", index=False)
-
