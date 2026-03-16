@@ -580,9 +580,9 @@ Fig 8 shows the point estimates with 95% confidence intervals for each group, ma
 
 #### Critical reflection
 
-The bootstrapped distribution of means of happiness scores per period by section reveals deviations between different chronological periods of the same section, different sections within the same period, and, arguably most importantly, positions each chronologically bound section on the happiness scale. Since the deviations happen within the span of 5.6 to 6.2 happiness mean score, the neutrality of the genre of journalism has to be taken into consideration. However, it is noteworthy that, for instance, the 2010-2013 Opinions section of the Guardian is the least happy conjuncture from the data we examined, while Politics 2010-2013 is the happiest. World News from 2010-2013 also seems to be slightly happier than in 2020-2023. With 2010-2013 sections occupying both ends of the bootstrapped distribution and two out of the three sections examined scoring higher than their counterparts in 2020-2023, it seems reasonable to talk of a divide between what official report fully endorsed by the institution aims to convey and what individual journalists and public intellectuals have to say about current events in the early 2010s. 
+The bootstrapped distribution of means of happiness scores per period by section reveals deviations between different chronological periods of the same section, different sections within the same period, and, arguably most importantly, positions each chronologically bound section on the happiness scale. Since the deviations happen within the span of 5.6 to 6.2 happiness mean score, the neutrality of the genre of journalism has to be taken into consideration. However, it is noteworthy that, for instance, the 2010-2013 Opinions section of the Guardian is the least happy conjuncture from the data we examined, while Politics 2010-2013 is the happiest. World News from 2010-2013 also seems to be slightly happier than in 2020-2023. With 2010-2013 sections occupying both ends of the bootstrapped distribution and two out of the three sections examined scoring higher than their counterparts in 2020-2023, it seems reasonable to talk of a divide between what official report fully endorsed by the institution aims to convey and what individual journalists and public intellectuals have to say about current events in the early 2010s (Said 1994). 
 
-The Opinion and Politics sections for 2020-2023 seems to be closer to alignment. Politics is still holding the happier position from the two, however Opinion seems to not be falling that far behind. This “bridging” of the gap between the two categories in later years may signify a more censored journalistic exposure, with pieces that challenge the overall affective ambience of the Guardian being replaced with viewpoints on current events that are more affirmative of the institution that hosts them. Interestingly, World News from the early 2020s occupy the least happy positions of the period, exhibiting a slight trend to a more neutral, or perhaps less positive, position on reporting. Compared to World News from 2010-2013, World News 2020-2023 is visibly less positive. Such a trend could relate to the rise of isolationist alt-right sentiments in the US, prioritizing the nation as source of happiness while upholding a specific kind of epistemic, cultural and, as could be deduced from our data, affective hierarchy on the premise of national borders. 
+The Opinion and Politics sections for 2020-2023 seems to be closer to alignment. Politics is still holding the happier position from the two, however Opinion seems to not be falling that far behind. This “bridging” of the gap between the two categories in later years may signify a more censored journalistic exposure, with pieces that challenge the overall affective ambience of the Guardian being replaced with viewpoints on current events that are more affirmative of the institution that hosts them. Interestingly, World News from the early 2020s occupy the least happy positions of the period, exhibiting a slight trend to a more neutral, or perhaps less positive, position on reporting. Compared to World News from 2010-2013, World News 2020-2023 is visibly less positive. Such a trend could relate to the rise of isolationist alt-right sentiments in the US, prioritizing the nation as source of happiness while upholding a specific kind of epistemic, cultural and, as could be deduced from our data, affective hierarchy on the premise of national borders (Anderson 1983git add ). 
 
 #### Coverage
 On average, only about 19-20% of words per article contributed to the happiness scores. This means the scores are based on a limited emotional vocabulary, which should be considered when interpreting the results.
@@ -597,7 +597,7 @@ On average, only about 19-20% of words per article contributed to the happiness 
 
 ### Positive, negative, highly contested, polarizing words in Guardian
 
-## Very positive
+#### Very positive
 
 | word       | happiness_score | 
 |------------|-----------------|
@@ -612,7 +612,7 @@ On average, only about 19-20% of words per article contributed to the happiness 
 | laughs     | 8.18            |
 | successful | 8.16            |
 
-## Very negative
+#### Very negative
 
 | word      | happiness_score |
 |-----------|-----------------|
@@ -627,7 +627,7 @@ On average, only about 19-20% of words per article contributed to the happiness 
 | kill      | 1.56            |
 | killed    | 1.56            |
 
-## Highly contested
+#### Highly contested
 
 Words with high variance in happiness ratings.
 
@@ -644,7 +644,7 @@ Words with high variance in happiness ratings.
 | porn       | 4.18            | 2.4302       |
 | summer     | 6.4             | 2.3905       |
 
-## Polarizing
+#### Polarizing
 
 Words that elicit particularly diverse happiness ratings.
 
@@ -693,7 +693,7 @@ Words that elicit particularly diverse happiness ratings.
 | laughing            | death               | churches               | alcohol          |
 | excellent           | died                | capitalism             | thunder          |
 | laughs              | kill                | porn                   | recall           |
-| successful          | killed              | summer                 | socialism      
+| successful          | killed              | summer                 | socialism        |
 
 ### Interpretation of the Word Exhibit 
 
@@ -706,3 +706,11 @@ The corpus also contains several highly contested words, including fucking, puss
 Finally, the exhibit includes several polarizing words such as capitalism, capitalist, Islam, and socialism. These terms are closely linked to political and ideological debates and may evoke different emotional responses depending on the perspective of the reader or the political context of the article. Their appearance in the corpus likely reflects ongoing discussions about economic systems, religion, and global politics.
 
 Overall, the word exhibit illustrates how the emotional vocabulary of the Guardian corpus is shaped both by the thematic structure of journalism and by broader political and social debates.
+
+## Bibliography
+
+Anderson, B. (1983). *Imagined Communities*
+Boydstun, A., Hardy, A., & Walgrave, S. (2014). *Two Faces of Media Attention*.
+McCombs, M., & Shaw, D. (1972). *The Agenda-Setting Function of Mass Media*.
+Said, E. (1994). *Representations of the Intellectual*.
+Soroka, S. (2014). *Negativity in Democratic Politics*.
