@@ -168,7 +168,7 @@ All tables referenced in this section are generated automatically by the analysi
 
 ### 3.1 The usage of AI tools
  
-Due to the tight deadline and the lack of strong programming skills among our group members, we utilized intelligent tools, including UVA AI, to assist in writing and modifying the code. First, we reviewed the course content and project guidelines to understand the coding techniques required for this exercise. When writing code to clean the data, we followed the task's logical requirements, with AI guiding our code writing. During this process, we encountered code errors, possibly caused by an error in the AI's file path specification. We needed to modify the AI's suggestions based on our local operating environment and file paths, ultimately completing the cleaning and organization of the raw data. Generating relevant statistical charts for qualitative and quantitative analysis proved challenging. Again, we relied on intelligent tools to ensure the generated charts accurately reflected the required data while being neat and aesthetically pleasing. To ensure every group member fully understood the code, we had the AI ​​provide a detailed explanation of each line, including its function and the programming techniques used. We then used Python's comment function (#) to annotate these points of difficulty below the corresponding lines of code.
+Due to the tight deadline and the lack of strong programming skills among our group members, we utilized intelligent tools, including UVA AI, to assist in writing and modifying the code. To ensure every group member fully understood the code, we had the AI ​​provide a detailed explanation of each line, including its function and the programming techniques used. We then used Python's comment function (#) to annotate these points of difficulty below the corresponding lines of code.
 
 AI is a great help to us quickly learn code and advance tasks. We use it to guide us in writing code and help us analyze errors. At the same time, we don't forget not to lose control of the code. We require the AI ​​to interpret everything it generates to ensure that the entire project is always under our control, and to let the AI ​​only serve as an auxiliary tool to provide technical support. AI was of particular use in the creation of plots for the qualitative analysis, as well as for piecing together interpretations of the code written by our team members. 
 
@@ -473,3 +473,236 @@ echo $GUARDIAN_API_KEY
 Set the correct route for REPL before running it in an Interactive window
 import os
 os.chdir("/Users/boranzhang/Desktop/Coding The Humanities/group_project/Group_6_Project/CtH_group6/project2")
+
+
+## Guardian Results
+
+### Sampling plan
+
+- Sample: All Guardian articles retrieved from the API for the periods 2010‑13 and 2020‑23,
+  filtered to sections "World news", "Politics", "Opinion", and with valid happiness scores 
+  (see operalisation in src/compute_lambt_scores.py).
+
+- Population: Conceptualised as a superpopulation of all possible articles that could have
+  been written under similar editorial policies. We use bootstrapping to quantify uncertainty
+  due to sampling variability.
+
+- Methods (descriptive + bootstrap): kiba kiba kiba kibakibakibakibakiba
+
+### Descriptive Statistics
+
+Table 1 shows summary statistics for each section‑period group. [Optional: comment on sample sizes, skewness, etc.]
+
+| Section   | Period    | Count | Mean  | Std   | Min   | 25%   | 50%   | 75%   | Max   | Skew | Kurtosis |
+|-----------|-----------|-------|-------|-------|-------|-------|-------|-------|-------|------|----------|
+| Opinion   | 2010‑13   | 25    | 5.749 | 0.254 | 5.192 | 5.613 | 5.799 | 5.914 | 6.204 | -0.520 | 0.044 |
+| Opinion   | 2020‑23   | 31    | 5.866 | 0.240 | 5.455 | 5.720 | 5.858 | 6.046 | 6.461 | 0.337 | -0.084 |
+| Politics  | 2010‑13   | 79    | 6.061 | 0.275 | 5.590 | 5.794 | 6.090 | 6.331 | 6.430 | -0.206 | -1.681 |
+| Politics  | 2020‑23   | 26    | 5.933 | 0.207 | 5.581 | 5.764 | 5.956 | 6.109 | 6.276 | -0.101 | -1.076 |
+| World news| 2010‑13   | 18    | 5.897 | 0.225 | 5.291 | 5.797 | 5.919 | 6.016 | 6.235 | -0.985 | 2.031 |
+| World news| 2020‑23   | 18    | 5.845 | 0.319 | 5.271 | 5.629 | 5.850 | 6.064 | 6.443 | -0.064 | -0.491 |
+
+#### Visualisation
+
+Figure 1 shows the distribution of happiness scores for the two time periods (pooling sections). The density curves overlap substantially, but a slight shift towards lower scores in 2020‑23 is visible.
+
+![Density of happiness by period](figures/happiness_distribution_by_period.png)  
+*Figure 1: Density plot of happiness scores for 2010‑13 and 2020‑23 (all sections combined).*
+
+Figure 2 displays the distributions by section (ignoring period). Politics articles tend toward higher happiness values, while Opinion shows a slightly lower peak.
+
+![Density of happiness by section](figures/happiness_distribution_by_section.png)  
+*Figure 2: Density plot of happiness scores for World news, Politics, and Opinion (both periods pooled).*
+
+Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
+
+![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
+*Figure 3: Boxplot of happiness scores for each section and period.*
+
+### Inferential Statistics
+
+All confidence intervals are 95% bootstrap intervals based on 10,000 resamples.
+
+#### Comparison 1: Overall Period Difference
+The mean happiness across all sections in 2020‑23 was <!-- [DIFF]--> **-0.088** points lower than in 2010‑13, with a 95% bootstrap confidence interval of <!--[LOWER, UPPER]--> **-0.165, -0.011**. Since the entire interval lies below zero, we conclude that happiness decreased overall between the two periods.
+
+Fig 4 shows the bootstrap distribution of this difference; the red line is the observed difference, and the blue dashed lines mark the 95% CI.
+
+![Bootstrap distribution of the overall period difference](figures/bootstrap_period_difference.png)  
+*Figure 4: Bootstrap distribution of the mean difference (2020‑23 minus 2010‑13). The red line is the observed difference, blue dashed lines are the 95% CI.*
+
+Fig 5 displays the bootstrap distributions of the mean happiness for each period (all sections combined). The separation between the two distributions reflects the uncertainty around the period means and confirms the downward shift.
+
+![Bootstrap distributions of means by period (pooling sections)](figures/bootstrap_means_by_period_pooled.png)  
+*Figure 5: Bootstrap distributions of the mean happiness for each period, showing the uncertainty around the period means (all sections combined).*
+
+##### Critical analysis
+
+The overall slight decrease in happiness noticed in our dataset between the two periods (2010-2013 and 2020-2023) could be partly attributed to broader changes in the global political and social context of each era. Especially the years after 2020 have seen several major global crises, such as the COVID-19 pandemic and geopolitical conflicts such as the wars in Ukraine and Gaza. These events could be used to think of why there could be a general negative sentiment shift in media coverage. It is important to mention that the point is not to conclude that the second period has more extreme events or has seen worse incidents but we could use major crisis events during the second interval to begin to explain the emotional shifts in our examined dataset. 
+
+With that in mind, global instability during the second period may have been mediated through the media in the form of conflict- and problem-focused narratives, resulting in a less positive overall tone in news. The slightly lower happiness scores observed in the later period may reflect the increased prominence of crisis-related language in the news that aligns with the political instability caused by these major events. (Boydstun, Hardy, and Walgrave 2014).
+
+However, the observed slight decrease should also be interpreted with caution, as it may partly reflect methodological characteristics of the hedonometer. The labMT lexicon, developed in the early 2010s, which is responsible for the happiness scoring, itself is influencing sentiment shift. As the words were initially captured in the 2010s, coinciding with the first period examined, changes in language and word usage might be obscured and under-represent for the second period. The lexicon was constructed from the most frequently occurring words in specific corpora (Google books, NYT, Twitter and lyrics) during the first period, and this means that the initial dataset could represent language patterns from the early 2010s more accurately than in the second period. Lastly, only words that appear in the lexicon contribute to the total happiness calculation. In our dataset, approximately 19% of the words in each article matched the labMT dictionary, so the sentiment score reflects just a subset of the article’s vocabulary. 
+
+#### Comparison 2: Differences Between Sections
+Pairwise comparisons (ignoring period) reveal:
+- **Politics vs World news**: Politics is happier by <!--[DIFF_PW]--> **0.158** points (95% CI <!--[LOWER, UPPER]--> -0.056, 0.261).
+- **World news vs Opinion**: No significant difference (diff = <!--[DIFF_WO]--> **-0.056**, 95% CI <!--[LOWER, UPPER]--> -0.166, 0.052).
+- **Politics vs Opinion**: Politics is happier by <!--[DIFF_PO]--> **+0.215** points (95% CI <!-- [LOWER, UPPER]--> 0.131, 0.298).
+
+Thus, Politics articles consistently score higher than the other two sections, while World news and Opinion are statistically similar.
+
+![Bootstrap distributions of means by section (pooling periods)](figures/bootstrap_means_by_section.png)  
+*Figure 6: Bootstrap distributions of the mean happiness for each section, showing the sampling variability of the section means.*
+
+##### Critical analysis
+
+Now that the overall shift in happiness across time periods has been examined, it is useful to look more closely at differences between sections to better understand how sentiment is distributed in the dataset. Rather than focusing only on chronological events that might influence the emotional tone of news, analysing the data by section allows us to consider how language is used differently across types of journalism. This perspective helps interpret the results in terms of the agendas and reporting styles that shape media coverage.
+
+The overall trend observed was that Politics articles appear more positive than Opinion and World news. Here, it is useful to consider how media organisations such as the Guardian structure coverage around particular topics within different sections. From an agenda-setting perspective (McCombs and Shaw 1972), different sections tend to emphasise different types of issues and therefore employ different kinds of language. Opinion articles, for example, often involve commentary and critique and therefore use more critical vocabulary. The World News section frequently reports on major global events, conflicts, or crises, which can involve more negative terms. Political reporting often focuses on institutional processes such as policy, decisions and negotiations and therefore tends to rely on relatively neutral language. These differences in reporting style may therefore influence the sentiment scores observed across sections.
+
+Looking closely at our dataset offers some explanation to why Politcs articles scored slightly more positively. Many politics articles indeed include institutional language with reccuring words such as policy and government. In the labMT dictionary, these words typically receive higher scores (usually neutral). In contrast, words associated with conflict, war, or crisis are more common in World News and receive lower scores in the lexicon.
+
+#### Comparison 3: Period Change Within Each Section
+- **World news**: No significant change (diff = <!--[DIFF_WN]--> **-0.052**, 95% CI <!--[LOWER, UPPER]--> -0.228, 0.129).
+- **Politics**: Significant decrease of <!--[DIFF_P]--> **-0.127** points (95% CI <!--[LOWER, UPPER]--> -0.227, -0.029).
+- **Opinion**: No significant change (diff = <!--[DIFF_O]--> **0.118**, 95% CI <!--[LOWER, UPPER]--> -0.009, 0.250), though the interval is mostly positive, hinting at a possible increase.
+
+Fig 7 presents the bootstrap distributions of the mean for each section‑period group, allowing direct visual comparison of the uncertainty and central tendency for the two periods within each section. The separation (or overlap) between the 2010‑13 and 2020‑23 distributions for each section reflects the evidence for a change
+
+![Bootstrap distributions of means by section and period](figures/bootstrap_means_by_section_and_period.png)  
+*Figure 7: Bootstrap distributions of the mean happiness for each section‑period group.*
+
+Fig 8 shows the point estimates with 95% confidence intervals for each group, making it easy to see the magnitude and uncertainty of the differences.
+
+![Mean happiness by section and period with 95% CI](figures/mean_ci_by_section_period.png)  
+*Figure 8: Point plot with 95% confidence intervals for each section‑period group.*
+
+#### Critical reflection
+
+The bootstrapped distribution of means of happiness scores per period by section reveals deviations between different chronological periods of the same section, different sections within the same period, and, arguably most importantly, positions each chronologically bound section on the happiness scale. Since the deviations happen within the span of 5.6 to 6.2 happiness mean score, the neutrality of the genre of journalism has to be taken into consideration. However, it is noteworthy that, for instance, the 2010-2013 Opinions section of the Guardian is the least happy conjuncture from the data we examined, while Politics 2010-2013 is the happiest. World News from 2010-2013 also seems to be slightly happier than in 2020-2023. With 2010-2013 sections occupying both ends of the bootstrapped distribution and two out of the three sections examined scoring higher than their counterparts in 2020-2023, it seems reasonable to talk of a divide between what official report fully endorsed by the institution aims to convey and what individual journalists and public intellectuals have to say about current events in the early 2010s. 
+
+The Opinion and Politics sections for 2020-2023 seems to be closer to alignment. Politics is still holding the happier position from the two, however Opinion seems to not be falling that far behind. This “bridging” of the gap between the two categories in later years may signify a more censored journalistic exposure, with pieces that challenge the overall affective ambience of the Guardian being replaced with viewpoints on current events that are more affirmative of the institution that hosts them. Interestingly, World News from the early 2020s occupy the least happy positions of the period, exhibiting a slight trend to a more neutral, or perhaps less positive, position on reporting. Compared to World News from 2010-2013, World News 2020-2023 is visibly less positive. Such a trend could relate to the rise of isolationist alt-right sentiments in the US, prioritizing the nation as source of happiness while upholding a specific kind of epistemic, cultural and, as could be deduced from our data, affective hierarchy on the premise of national borders. 
+
+#### Coverage
+On average, only about 19-20% of words per article contributed to the happiness scores. This means the scores are based on a limited emotional vocabulary, which should be considered when interpreting the results.
+
+| Section     | 2010‑13 | 2020‑23 |
+|-------------|---------|---------|
+| Opinion     | 0.191   | 0.190   |
+| Politics    | 0.198   | 0.189   |
+| World news  | 0.194   | 0.201   |
+
+*Table 2: Average proportion of matched words (coverage) by section and period.*
+
+### Positive, negative, highly contested, polarizing words in Guardian
+
+## Very positive
+
+| word       | happiness_score | 
+|------------|-----------------|
+| laughter   | 8.5             |
+| happiness  | 8.44            |
+| love       | 8.42            |
+| happy      | 8.3             |
+| laughed    | 8.26            |
+| laugh      | 8.22            |
+| laughing   | 8.2             |
+| excellent  | 8.18            |
+| laughs     | 8.18            |
+| successful | 8.16            |
+
+## Very negative
+
+| word      | happiness_score |
+|-----------|-----------------|
+| terrorist | 1.3             |
+| suicide   | 1.3             |
+| rape      | 1.44            |
+| terrorism | 1.48            |
+| murder    | 1.48            |
+| cancer    | 1.54            |
+| death     | 1.54            |
+| died      | 1.56            |
+| kill      | 1.56            |
+| killed    | 1.56            |
+
+## Highly contested
+
+Words with high variance in happiness ratings.
+
+| word       | happiness_score | happiness_std |
+|------------|-----------------|--------------|
+| fucking    | 4.64            | 2.926        |
+| pussy      | 4.8             | 2.665        |
+| cigarettes | 3.31            | 2.5997       |
+| fuck       | 4.14            | 2.5794       |
+| mortality  | 4.38            | 2.5546       |
+| cigarette  | 3.09            | 2.5163       |
+| churches   | 5.7             | 2.4599       |
+| capitalism | 5.16            | 2.4524       |
+| porn       | 4.18            | 2.4302       |
+| summer     | 6.4             | 2.3905       |
+
+## Polarizing
+
+Words that elicit particularly diverse happiness ratings.
+
+| word       | happiness_score | happiness_std |
+|------------|-----------------|--------------|
+| fucking    | 4.64            | 2.926        |
+| pussy      | 4.8             | 2.665        |
+| capitalism | 5.16            | 2.4524       |
+| capitalist | 4.84            | 2.3418       |
+| islam      | 4.68            | 2.325        |
+| pay        | 5.3             | 2.3234       |
+| alcohol    | 5.2             | 2.3212       |
+| thunder    | 5.06            | 2.2983       |
+| recall     | 4.6             | 2.2768       |
+| socialism  | 4.96            | 2.2727       |
+
+### Word exhibit in (comparative) practice
+
+#### labMT 1.0
+
+| very positive words | very negative words | highly contested words | polarizing words |
+|---------------------|---------------------|------------------------|------------------|
+| laughter            | terrorist           | fucking                | fucking          |
+| happiness           | suicide             | fuckin                 | pussy            |
+| love                | rape                | fucked                 | capitalism       |
+| happy               | terrorism           | pussy                  | capitalist       |
+| laughed             | murder              | whiskey                | islam            |
+| laugh               | death               | slut                   | pay              |
+| laughing            | cancer              | cigarettes             | alcohol          |
+| laughs              | killed              | fuck                   | thunder          |
+| excellent           | kill                | mortality              | liquor           |
+| joy                 | died                | cigarette              | wolves           |
+
+---
+
+#### Guardian
+
+| very positive words | very negative words | highly contested words | polarizing words |
+|---------------------|---------------------|------------------------|------------------|
+| laughter            | terrorist           | fucking                | fucking          |
+| happiness           | suicide             | pussy                  | pussy            |
+| love                | rape                | cigarettes             | capitalism       |
+| happy               | terrorism           | fuck                   | capitalist       |
+| laughed             | murder              | mortality              | islam            |
+| laugh               | cancer              | cigarette              | pay              |
+| laughing            | death               | churches               | alcohol          |
+| excellent           | died                | capitalism             | thunder          |
+| laughs              | kill                | porn                   | recall           |
+| successful          | killed              | summer                 | socialism      
+
+### Interpretation of the Word Exhibit 
+
+The reconstructed word exhibit highlights the range of emotional vocabulary present in the Guardian corpus when evaluated using the labMT happiness lexicon. The very positive words in the corpus, such as laughter, happiness, love, and happy, are associated with positive social experiences and cultural topics. These words often appear in sections related to lifestyle, culture, or human-interest stories, which tend to use language describing enjoyment, success, or celebration. 
+
+In contrast, very negative words such as terrorist, suicide, rape, terrorism, and murder are strongly associated with violence, conflict, and tragedy. These topics frequently appear in journalistic reporting, particularly in sections covering politics, international affairs, or crime. The prominence of such vocabulary reflects the broader role of news media in reporting crises and social problems. 
+
+The corpus also contains several highly contested words, including fucking, pussy, and cigarettes. These words have high standard deviations in the labMT dataset, indicating disagreement among annotators about their emotional valence. Their presence suggests that the emotional interpretation of certain words depends strongly on context, tone or quotation, which is common in opinion pieces or informal speech reproduced in news articles. 
+
+Finally, the exhibit includes several polarizing words such as capitalism, capitalist, Islam, and socialism. These terms are closely linked to political and ideological debates and may evoke different emotional responses depending on the perspective of the reader or the political context of the article. Their appearance in the corpus likely reflects ongoing discussions about economic systems, religion, and global politics.
+
+Overall, the word exhibit illustrates how the emotional vocabulary of the Guardian corpus is shaped both by the thematic structure of journalism and by broader political and social debates.
