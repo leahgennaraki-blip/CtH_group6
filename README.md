@@ -473,3 +473,102 @@ echo $GUARDIAN_API_KEY
 Set the correct route for REPL before running it in an Interactive window
 import os
 os.chdir("/Users/boranzhang/Desktop/Coding The Humanities/group_project/Group_6_Project/CtH_group6/project2")
+
+
+## Guardian Results
+
+### Sampling plan
+
+- Sample: All Guardian articles retrieved from the API for the periods 2010‑13 and 2020‑23,
+  filtered to sections "World news", "Politics", "Opinion", and with valid happiness scores 
+  (see operalisation in src/compute_lambt_scores.py).
+
+- Population: Conceptualised as a superpopulation of all possible articles that could have
+  been written under similar editorial policies. We use bootstrapping to quantify uncertainty
+  due to sampling variability.
+
+- Methods (descriptive + bootstrap): kiba kiba kiba kibakibakibakibakiba
+
+### Descriptive Statistics
+
+Table 1 shows summary statistics for each section‑period group. [Optional: comment on sample sizes, skewness, etc.]
+
+| Section   | Period    | Count | Mean  | Std   | Min   | 25%   | 50%   | 75%   | Max   | Skew | Kurtosis |
+|-----------|-----------|-------|-------|-------|-------|-------|-------|-------|-------|------|----------|
+| Opinion   | 2010‑13   | 25    | 5.749 | 0.254 | 5.192 | 5.613 | 5.799 | 5.914 | 6.204 | -0.520 | 0.044 |
+| Opinion   | 2020‑23   | 31    | 5.866 | 0.240 | 5.455 | 5.720 | 5.858 | 6.046 | 6.461 | 0.337 | -0.084 |
+| Politics  | 2010‑13   | 79    | 6.061 | 0.275 | 5.590 | 5.794 | 6.090 | 6.331 | 6.430 | -0.206 | -1.681 |
+| Politics  | 2020‑23   | 26    | 5.933 | 0.207 | 5.581 | 5.764 | 5.956 | 6.109 | 6.276 | -0.101 | -1.076 |
+| World news| 2010‑13   | 18    | 5.897 | 0.225 | 5.291 | 5.797 | 5.919 | 6.016 | 6.235 | -0.985 | 2.031 |
+| World news| 2020‑23   | 18    | 5.845 | 0.319 | 5.271 | 5.629 | 5.850 | 6.064 | 6.443 | -0.064 | -0.491 |
+
+#### Visualisation
+
+Figure 1 shows the distribution of happiness scores for the two time periods (pooling sections). The density curves overlap substantially, but a slight shift towards lower scores in 2020‑23 is visible.
+
+![Density of happiness by period](figures/happiness_distribution_by_period.png)  
+*Figure 1: Density plot of happiness scores for 2010‑13 and 2020‑23 (all sections combined).*
+
+Figure 2 displays the distributions by section (ignoring period). Politics articles tend toward higher happiness values, while Opinion shows a slightly lower peak.
+
+![Density of happiness by section](figures/happiness_distribution_by_section.png)  
+*Figure 2: Density plot of happiness scores for World news, Politics, and Opinion (both periods pooled).*
+
+Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
+
+![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
+*Figure 3: Boxplot of happiness scores for each section and period.*
+
+### Inferential Statistics
+
+All confidence intervals are 95% bootstrap intervals based on 10,000 resamples.
+
+#### Comparison 1: Overall Period Difference
+The mean happiness across all sections in 2020‑23 was <!-- [DIFF]--> **-0.088** points lower than in 2010‑13, with a 95% bootstrap confidence interval of <!--[LOWER, UPPER]--> **-0.165, -0.011**. Since the entire interval lies below zero, we conclude that happiness decreased overall between the two periods.
+
+Fig 4 shows the bootstrap distribution of this difference; the red line is the observed difference, and the blue dashed lines mark the 95% CI.
+
+![Bootstrap distribution of the overall period difference](figures/bootstrap_period_difference.png)  
+*Figure 4: Bootstrap distribution of the mean difference (2020‑23 minus 2010‑13). The red line is the observed difference, blue dashed lines are the 95% CI.*
+
+Fig 5 displays the bootstrap distributions of the mean happiness for each period (all sections combined). The separation between the two distributions reflects the uncertainty around the period means and confirms the downward shift.
+
+![Bootstrap distributions of means by period (pooling sections)](figures/bootstrap_means_by_period_pooled.png)  
+*Figure 5: Bootstrap distributions of the mean happiness for each period, showing the uncertainty around the period means (all sections combined).*
+
+#### Comparison 2: Differences Between Sections
+Pairwise comparisons (ignoring period) reveal:
+- **Politics vs World news**: Politics is happier by <!--[DIFF_PW]--> **0.158** points (95% CI <!--[LOWER, UPPER]--> -0.056, 0.261).
+- **World news vs Opinion**: No significant difference (diff = <!--[DIFF_WO]--> **-0.056**, 95% CI <!--[LOWER, UPPER]--> -0.166, 0.052).
+- **Politics vs Opinion**: Politics is happier by <!--[DIFF_PO]--> **+0.215** points (95% CI <!-- [LOWER, UPPER]--> 0.131, 0.298).
+
+Thus, Politics articles consistently score higher than the other two sections, while World news and Opinion are statistically similar.
+
+![Bootstrap distributions of means by section (pooling periods)](figures/bootstrap_means_by_section.png)  
+*Figure 6: Bootstrap distributions of the mean happiness for each section, showing the sampling variability of the section means.*
+
+#### Comparison 3: Period Change Within Each Section
+- **World news**: No significant change (diff = <!--[DIFF_WN]--> **-0.052**, 95% CI <!--[LOWER, UPPER]--> -0.228, 0.129).
+- **Politics**: Significant decrease of <!--[DIFF_P]--> **-0.127** points (95% CI <!--[LOWER, UPPER]--> -0.227, -0.029).
+- **Opinion**: No significant change (diff = <!--[DIFF_O]--> **0.118**, 95% CI <!--[LOWER, UPPER]--> -0.009, 0.250), though the interval is mostly positive, hinting at a possible increase.
+
+Fig 7 presents the bootstrap distributions of the mean for each section‑period group, allowing direct visual comparison of the uncertainty and central tendency for the two periods within each section. The separation (or overlap) between the 2010‑13 and 2020‑23 distributions for each section reflects the evidence for a change
+
+![Bootstrap distributions of means by section and period](figures/bootstrap_means_by_section_and_period.png)  
+*Figure 7: Bootstrap distributions of the mean happiness for each section‑period group.*
+
+Fig 8 shows the point estimates with 95% confidence intervals for each group, making it easy to see the magnitude and uncertainty of the differences.
+
+![Mean happiness by section and period with 95% CI](figures/mean_ci_by_section_period.png)  
+*Figure 8: Point plot with 95% confidence intervals for each section‑period group.*
+
+#### Coverage
+On average, only about 19-20% of words per article contributed to the happiness scores. This means the scores are based on a limited emotional vocabulary, which should be considered when interpreting the results.
+
+| Section     | 2010‑13 | 2020‑23 |
+|-------------|---------|---------|
+| Opinion     | 0.191   | 0.190   |
+| Politics    | 0.198   | 0.189   |
+| World news  | 0.194   | 0.201   |
+
+*Table 2: Average proportion of matched words (coverage) by section and period.*
