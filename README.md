@@ -46,7 +46,7 @@ We work with the **labMT 1.0** dataset (`Data_Set_S1.txt`), originally construct
 
 The file we use is a **tab‑delimited text file** with several metadata lines at the top, followed by a header row and one row per word.
 
-> We will reconstruct this pipeline and discuss its consequences in more detail in the *Critical reflection* section (Section 6).
+> We will reconstruct this pipeline and discuss its consequences in more detail in the *Critical reflection* section.
 
 ---
 
@@ -399,7 +399,7 @@ Fig 5 displays the bootstrap distributions of the mean happiness for each period
 *Figure 5: Bootstrap distributions of the mean happiness for each period, showing the uncertainty around the period means (all sections combined).*
 
 **Critical analysis**
- The overall slight decrease in happiness noticed in our dataset between the two periods (2010-2013 and 2020-2023) could be partly attributed to broader changes in the global political and social context of each era. Especially the years after 2020 have seen several major global crises, such as the COVID-19 pandemic and geopolitical conflicts such as the wars in Ukraine and Gaza. These events could be used to think of why there could be a general negative sentiment shift in media coverage. It is important to mention that the point is not to conclude that the second period has more extreme events or has seen worse incidents but we could use major crisis events during the second interval to begin to explain the emotional shifts in our examined dataset.
+The overall slight decrease in happiness noticed in our dataset between the two periods (2010-2013 and 2020-2023) could be partly attributed to broader changes in the global political and social context of each era. Especially the years after 2020 have seen several major global crises, such as the COVID-19 pandemic and geopolitical conflicts such as the wars in Ukraine and Gaza. These events could be used to think of why there could be a general negative sentiment shift in media coverage. It is important to mention that the point is not to conclude that the second period has more extreme events or has seen worse incidents but we could use major crisis events during the second interval to begin to explain the emotional shifts in our examined dataset.
 
 With that in mind, global instability during the second period may have been mediated through the media in the form of conflict- and problem-focused narratives, resulting in a less positive overall tone in news. The slightly lower happiness scores observed in the later period may reflect the increased prominence of crisis-related language in the news that aligns with the political instability caused by these major events. (Boydstun, Hardy, and Walgrave 2014).
 
@@ -506,7 +506,7 @@ Fig 8 shows the point estimates with 95% confidence intervals for each group, ma
 
 The bootstrapped distribution of means of happiness scores per period by section reveals deviations between different chronological periods of the same section, different sections within the same period, and, arguably most importantly, positions each chronologically bound section on the happiness scale. Since the deviations happen within the span of 5.6 to 6.2 happiness mean score, the neutrality of the genre of journalism has to be taken into consideration. However, it is noteworthy that, for instance, the 2010-2013 Opinions section of the Guardian is the least happy conjuncture from the data we examined, while Politics 2010-2013 is the happiest. World News from 2010-2013 also seems to be slightly happier than in 2020-2023. With 2010-2013 sections occupying both ends of the bootstrapped distribution and two out of the three sections examined scoring higher than their counterparts in 2020-2023, it seems reasonable to talk of a divide between what official report fully endorsed by the institution aims to convey and what individual journalists and public intellectuals have to say about current events in the early 2010s (Said 1994). 
 
-The Opinion and Politics sections for 2020-2023 seems to be closer to alignment. Politics is still holding the happier position from the two, however Opinion seems to not be falling that far behind. This “bridging” of the gap between the two categories in later years may signify a more censored journalistic exposure, with pieces that challenge the overall affective ambience of the Guardian being replaced with viewpoints on current events that are more affirmative of the institution that hosts them. Interestingly, World News from the early 2020s occupy the least happy positions of the period, exhibiting a slight trend to a more neutral, or perhaps less positive, position on reporting. Compared to World News from 2010-2013, World News 2020-2023 is visibly less positive. Such a trend could relate to the rise of isolationist alt-right sentiments in the US, prioritizing the nation as source of happiness while upholding a specific kind of epistemic, cultural and, as could be deduced from our data, affective hierarchy on the premise of national borders (Anderson 1983git add ). 
+The Opinion and Politics sections for 2020-2023 seems to be closer to alignment. Politics is still holding the happier position from the two, however Opinion seems to not be falling that far behind. This “bridging” of the gap between the two categories in later years may signify a more censored journalistic exposure, with pieces that challenge the overall affective ambience of the Guardian being replaced with viewpoints on current events that are more affirmative of the institution that hosts them. Interestingly, World News from the early 2020s occupy the least happy positions of the period, exhibiting a slight trend to a more neutral, or perhaps less positive, position on reporting. Compared to World News from 2010-2013, World News 2020-2023 is visibly less positive. Such a trend could relate to the rise of isolationist alt-right sentiments in the US, prioritizing the nation as source of happiness while upholding a specific kind of epistemic, cultural and, as could be deduced from our data, affective hierarchy on the premise of national borders (Anderson 1983). Bearing in mind the aforementioned assumptions on nationalist discourse, we delve deeper into the populism in the media in section **Populism in The Guardian**. While nationalist discourses and populism are not one and the same, in the context of populist rhetoric in politics, the people address are always the ideal citizens of the (incidentally also ideal) nation. 
 
 #### Coverage
 
@@ -571,7 +571,7 @@ Words with high variance in happiness ratings.
 
 #### Polarizing
 
-Words that elicit particularly diverse happiness ratings.
+Words that elicit polar happiness ratings.
 
 | word       | happiness_score | happiness_std |
 |------------|-----------------|--------------|
@@ -632,6 +632,18 @@ Finally, the exhibit includes several polarizing words such as capitalism, capit
 
 Overall, the word exhibit illustrates how the emotional vocabulary of the Guardian corpus is shaped both by the thematic structure of journalism and by broader political and social debates.
 
+### Populism in The Guardian
+
+Given the sections we chose for the happiness evaluation of The Guardian over predetermined periods (2010-2013, 2020-2023) and our assumption expressed in the **Critical analysis** for **Comparison 3**, we resolved to examine populist trends in our sample of The Guardian across periods and sections. For this purpose we employed the dictionary of populist terms from `Measuring Populism: Comparing Two Methods of Content Analysis` (Rooduijn and Pauwels 2011), which was formed through empirical (examining political manifestos) and theoretical reasoning (words associated with performing a positioning of the bad elites against the good people). While the dictionary is neither exhaustive nor transparent, we argue that unlike political manifestos, where partiality is always implied, words associated with populism in an impartial medium are worth particular attention and further scrutiny. 
+
+As revealed by our code in [](src/guardian_populism.py), our sample of The Guardian features 67 articles with at least one populist term. The total count of populist term occurences is 634 out of total word count of 331240 of the articles that include >=1 populist terms. The mean happiness score of the articles with >=1 populist words is approximately 5.84. 
+
+![Intensity and Prevalence of populist terms in entirety of sample](figures/fig_populism_whole_sample_pointline.png)  
+*Figure 9: The Intensity and Prevalence of populist terms per section per period in the entirety of our sample of the Guardian.*
+
+![Intensity and Mean Happiness Score in articles with >= 1 populist term](figures/fig_populism_populist_articles_pointline.png)  
+*Figure 10: The Intensity of populist terms and Mean Happiness Score of articles with at least one populist term.*
+
 ### How to run the code 
 
 The files in src/ include the runable code for this project. Starting from src/load_labmt.py to load the cleaned data, we then moved to quantitative_exploration.py where the standard deviation, average happiness etc are calculated in the form of reusable functions and where relevant plots (hist_happiness_average.png, scatter_happiness_vs_std.png, bar_corpus_rank_coverage.png) are created and saved in figures/. By running the code in qualitative_exploration.py, we are entering the final stage of the project in its current form, where the 10 most positive, most negative, highly contested and polarizing words are are fetched. The code in qualitative_exploration.py also generates the two plots relating to 1. the 4 aforementioned categories (labmt_top_10_per_cat.png) and 2. the "word exhibit" (labmt_word_exhibit.png).
@@ -660,10 +672,11 @@ We utilized intelligent tools, including UVA AI, to assist in writing and modify
 
 ## Bibliography
 
-Althusser, L. (1970). *Ideology and Ideological State Apparatuses*
+Althusser, L. (1970). *Ideology and Ideological State Apparatuses*.
 Anderson, B. (1983). *Imagined Communities*.
-Berlant, L. (2011). *Cruel Optimism*
+Berlant, L. (2011). *Cruel Optimism*.
 Boydstun, A., Hardy, A., & Walgrave, S. (2014). *Two Faces of Media Attention*.
 McCombs, M., & Shaw, D. (1972). *The Agenda-Setting Function of Mass Media*.
+Rooduijn M. & Pauwels T. (2011). *Measuring Populism: Comparing Two Methods of Content Analysis*.
 Said, E. (1994). *Representations of the Intellectual*.
 Soroka, S. (2014). *Negativity in Democratic Politics*.
