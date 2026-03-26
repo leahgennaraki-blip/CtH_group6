@@ -368,17 +368,17 @@ Table 1 shows summary statistics for each section‑period group. [Optional: com
 
 #### Visualisation
 
-Figure 1 shows the distribution of happiness scores for the two time periods (pooling sections). The density curves overlap substantially, but a slight shift towards lower scores in 2020‑23 is visible.
+Figure 5 shows the distribution of happiness scores for the two time periods (pooling sections). The density curves overlap substantially, but a slight shift towards lower scores in 2020‑23 is visible.
 
 ![Density of happiness by period](figures/happiness_distribution_by_period.png)  
 ***Figure 5:** Density plot of happiness scores for 2010‑13 and 2020‑23 (all sections combined).*
 
-Figure 2 displays the distributions by section (ignoring period). Politics articles tend toward higher happiness values, while Opinion shows a slightly lower peak.
+Figure 6 displays the distributions by section (ignoring period). Politics articles tend toward higher happiness values, while Opinion shows a slightly lower peak.
 
 ![Density of happiness by section](figures/happiness_distribution_by_section.png)  
 ***Figure 6:** Density plot of happiness scores for World news, Politics, and Opinion (both periods pooled).*
 
-Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
+Figure 7 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
 
 ![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
 ***Figure 7:** Boxplot of happiness scores for each section and period.*
@@ -496,12 +496,12 @@ Looking at sections overall helps to explain differences in reporting styles and
 - **Politics**: Significant decrease of <!--[DIFF_P]--> **-0.127** points (95% CI <!--[LOWER, UPPER]--> -0.227, -0.029).
 - **Opinion**: No significant change (diff = <!--[DIFF_O]--> **0.118**, 95% CI <!--[LOWER, UPPER]--> -0.009, 0.250), though the interval is mostly positive, hinting at a possible increase.
 
-Fig 7 presents the bootstrap distributions of the mean for each section‑period group, allowing direct visual comparison of the uncertainty and central tendency for the two periods within each section. The separation (or overlap) between the 2010‑13 and 2020‑23 distributions for each section reflects the evidence for a change
+Fig 12 presents the bootstrap distributions of the mean for each section‑period group, allowing direct visual comparison of the uncertainty and central tendency for the two periods within each section. The separation (or overlap) between the 2010‑13 and 2020‑23 distributions for each section reflects the evidence for a change
 
 ![Bootstrap distributions of means by section and period](figures/bootstrap_means_by_section_and_period.png)  
 ***Figure 12:** Bootstrap distributions of the mean happiness for each section‑period group.*
 
-Fig 8 shows the point estimates with 95% confidence intervals for each group, making it easy to see the magnitude and uncertainty of the differences.
+Fig 13 shows the point estimates with 95% confidence intervals for each group, making it easy to see the magnitude and uncertainty of the differences.
 
 ![Mean happiness by section and period with 95% CI](figures/mean_ci_by_section_period.png)  
 ***Figure 13:** Point plot with 95% confidence intervals for each section‑period group.*
@@ -642,21 +642,21 @@ Given the sections we chose for the happiness evaluation of The Guardian over pr
 
 As revealed by our code in [](src/guardian_populism.py), our sample of The Guardian features 67 articles with at least one populist term. The total count of populist term occurences is 634 out of total word count of 331240 of the articles that include >=1 populist terms. For readability and a general assumption that mentioning >=1 populist term shifts the register of an article and opens up the possibility of perpetuating the effects of populist rhetoric, we will be referring to such articles (incl. >=1 populist term) as 'populist articles'. The mean happiness score of populist articles is approximately 5.84. 
 
-By examining our sample of The Guardian articles as they appear in [](data/processed/guardian_articles_with_scores.csv) against the UK column of the populism dictionary (Rooduijn and Pauwels 2011) in [](data/raw/measuring_populism_dict.csv), we can observe the trends of populism rhetoric in The Guardian articles per section per period and measure both the intensity and prevalence in populism in the entire sample (*Figure 9*) & the intensity of populism in populist articles, as well as the mean happiness score of populist articles in relation to the difference of populist intensity over time and section (*Figure 10*).
+By examining our sample of The Guardian articles as they appear in [](data/processed/guardian_articles_with_scores.csv) against the UK column of the populism dictionary (Rooduijn and Pauwels 2011) in [](data/raw/measuring_populism_dict.csv), we can observe the trends of populism rhetoric in The Guardian articles per section per period and measure both the intensity and prevalence in populism in the entire sample (*Figure 14*) & the intensity of populism in populist articles, as well as the mean happiness score of populist articles in relation to the difference of populist intensity over time and section (*Figure 15*).
 
-Regarding the entirety of our sample of The Guardian, the intensity of populism (*Figure 9:* Left Panel) in each senction has increased in a largely proportinate manner in 2020-2023 compared to 2010-2013, with Politics being the section with the most populist terms per 1000 words, followed by Opinion and World News. However, this symmetry does not translate to the prevalence of populist articles (*Figure 9:* Right Panel). While the percentage of World News articles icluding at least one populist term has stayed exactly the same (at least to the 6th decimal), Politics has seen an increase from just under 40% to over 45%. Although a rise in populism in article with political content can be on par with populist and nationalist rhetoric in the UK political scene, what seems particularly interesting (and quite concerning) is the surge of populist articles in The Guardian's Opinion section, which doubled (from  16% to just over 38%).
+Regarding the entirety of our sample of The Guardian, the intensity of populism (*Figure 14:* Left Panel) in each senction has increased in a largely proportinate manner in 2020-2023 compared to 2010-2013, with Politics being the section with the most populist terms per 1000 words, followed by Opinion and World News. However, this symmetry does not translate to the prevalence of populist articles (*Figure 15:* Right Panel). While the percentage of World News articles icluding at least one populist term has stayed exactly the same (at least to the 6th decimal), Politics has seen an increase from just under 40% to over 45%. Although a rise in populism in article with political content can be on par with populist and nationalist rhetoric in the UK political scene, what seems particularly interesting (and quite concerning) is the surge of populist articles in The Guardian's Opinion section, which doubled (from  16% to just over 38%).
 
 ![Intensity and Prevalence of populist terms in entirety of sample](figures/fig_populism_whole_sample_pointline.png)  
 ***Figure 14:** The Intensity and Prevalence of populist terms per section per period in the entirety of our sample of the Guardian.*
 
-By focusing on the populist articles per section per period, we can gauge what the aforementioned trends mean for the subset of articles in question (*Figure 10*). Such a 'zooming in' is meant to supplement and help with the interpretation of the populism measurements in the overall sample. Populism intensity of populist articles in Politics and World News shows an increase of approximately 1 and 1.5 words per 1000 words respectively (*Figure 10:* Left Panel). Given the moderate increase in the intensity and prevalence of populism in both categories relating to the entire sample (*Figure 9*), such a trend seems logical. However, what we consider particularly worth mentioning is that the intensity of populism in populist Opinion articles experienced a drop of about 0.7 per 1000 words (*Figure 10:* Left Panel), meaning that while more articles in 2020-2023 contained at least one populist term (*Figure 9:* Right Panel), that upsurge was mitigated by a lower subset intensity.
+By focusing on the populist articles per section per period, we can gauge what the aforementioned trends mean for the subset of articles in question (*Figure 15*). Such a 'zooming in' is meant to supplement and help with the interpretation of the populism measurements in the overall sample. Populism intensity of populist articles in Politics and World News shows an increase of approximately 1 and 1.5 words per 1000 words respectively (*Figure 15:* Left Panel). Given the moderate increase in the intensity and prevalence of populism in both categories relating to the entire sample (*Figure 14*), such a trend seems logical. However, what we consider particularly worth mentioning is that the intensity of populism in populist Opinion articles experienced a drop of about 0.7 per 1000 words (*Figure 15:* Left Panel), meaning that while more articles in 2020-2023 contained at least one populist term (*Figure 14:* Right Panel), that upsurge was mitigated by a lower subset intensity.
 
-In addition to reporting on populist tendencies in The Guardian, the right panel in *Figure 10* relates populist articles to their mean happiness scores, as measured using the labMT 1.0 dataset. Overall, the happiness of populist articles seems to converge in 2020-2023, with the happiest section, namely 2010-2013 World News, showing a 0.3 drop in the 1-9 scale in 2020-2023. Although the populist Opinions section in 2010-2013 appears to be the least happy instance in the data, it also appears to have seen the sharpest increase in happiness, becomign the happiest one in 2020-2023. The increase in populist Politics articles' happiness is limited to the second decimal, marking a steady emotional register through the years. 
+In addition to reporting on populist tendencies in The Guardian, the right panel in *Figure 15* relates populist articles to their mean happiness scores, as measured using the labMT 1.0 dataset. Overall, the happiness of populist articles seems to converge in 2020-2023, with the happiest section, namely 2010-2013 World News, showing a 0.3 drop in the 1-9 scale in 2020-2023. Although the populist Opinions section in 2010-2013 appears to be the least happy instance in the data, it also appears to have seen the sharpest increase in happiness, becomign the happiest one in 2020-2023. The increase in populist Politics articles' happiness is limited to the second decimal, marking a steady emotional register through the years. 
 
 ![Intensity and Mean Happiness Score in articles with >= 1 populist term](figures/fig_populism_populist_articles_pointline.png)  
 ***Figure 15:** The Intensity of populist terms and Mean Happiness Score of articles with at least one populist term.*
 
-Relating back to the happiness scores per section per article in **Comparison 3** (*Figure 7*), while in the entire sample of The Guardian the 2010-2013 Politics section was the happiest, experiencing a drop in 2020-2023, among populist articles it is 2010-2013 World News that has the first place, with a visible drop in 2020-2023 which does not reflect in the overall corpus. Saddest sections in both the entire sample and the populist subset is Opinion 2010-2013. However, populist Opinion articles become slighly happier than Politics in 2020-2023, due to the former's sharper increase in happiness. This is not matched in the overall sample, with Politics remaining the happiest section per period.
+Relating back to the happiness scores per section per article in **Comparison 3** (*Figure 12*), while in the entire sample of The Guardian the 2010-2013 Politics section was the happiest, experiencing a drop in 2020-2023, among populist articles it is 2010-2013 World News that has the first place, with a visible drop in 2020-2023 which does not reflect in the overall corpus. Saddest sections in both the entire sample and the populist subset is Opinion 2010-2013. However, populist Opinion articles become slighly happier than Politics in 2020-2023, due to the former's sharper increase in happiness. This is not matched in the overall sample, with Politics remaining the happiest section per period.
 
 Connecting the high prevalence and intensity of populism in Opinion in 2020-2023 to the section's noted increase in happiness both within the populist subset and in the overall sample, it seems reasonable to assume that populism has been associated with positive emotion in Opinion pieces in The Guardian. The drop in populist World News section's happiness in 2020-2023, which is unmatched in the overall happiness scores, can indicate a rise in nationalist or even isolationist sentiment, associating happiness with the nation and finding populist tendencies outside it as threatening or negative, supporting our assumptions in the **Critical analysis** of **Comparison 3**.
 
@@ -666,7 +666,7 @@ The files in src/ include the runable code for this project. Starting from src/l
 
 The scripts words_guardian_periods.py and words_guardian_quality.py extend the qualitative analysis to the Guardian dataset. By running words_guardian_periods.py, we generate a comparison of the most frequent negative words across the two time periods (*Table 3*) The script words_guardian_quality.py focuses on differences across sections (Politics, World News, Opinion) by extracting the most frequent descriptive words while excluding short words (*Table 4*). The code in comparative_word_exhibit.py generates a word exhibit for The Guardian sample and juxtaposes it to the labMT 1.0 word exhibit. The differences between the two exhibits show what kinds of emotionally charged or disagreed upon words do and do not fit the style and emotional register of The Guardian. Together, these scripts help link the quantitative results to qualitative patterns in language.
 
-Our final qualitative examination of our chosen sample of The Guardian happens in guardian_populism.py, which parses through the guardian_articles_with_scores.csv for populist terms as they appear in measuring_populism_dict.csv and generates *Figure 9* and *Figure 10*, which showcase the overall intensity and prevalence of populism in The Guardian per section per period and the intensity and mean happiness score of populist articles respectively.
+Our final qualitative examination of our chosen sample of The Guardian happens in guardian_populism.py, which parses through the guardian_articles_with_scores.csv for populist terms as they appear in measuring_populism_dict.csv and generates *Figure 14* and *Figure 15*, which showcase the overall intensity and prevalence of populism in The Guardian per section per period and the intensity and mean happiness score of populist articles respectively.
 
 ## Conclusion
 
@@ -680,11 +680,11 @@ Tianye's responsibilities included initial cleaning and categorizing of raw data
 
 Leah's responsibilities lied within the qualitative exploration both of the labMT 1.0 dataset and The Guardian. Collaborated with Chrysoula and Yuki on the critical reflection on the laMT 1.0 dataset. She was in charge of the word exhibits and took initiative for the exploration of populism in The Guardian. Leah also oversaw the editing of the README.md, especially pertaining to the critical analysis and conclusions. To optimize workflow, she also suggested and initiated the usage of branches for contributing to the repository.
 
-Yuki/Yuxuan's responsibilites included creating the data dictionary and sanity cheaks. Collaborated with Sisi and Leah on the critical reflection (mainly 4.2 and the first and second of 4.3). 
+Yuki/Yuxuan's responsibilites included creating the data dictionary and sanity cheaks. Collaborated with Sisi and Leah on the critical reflection. 
 
 Chrysoula contributed to the qualitative exploration and critical discussion of the assignment. She analysed the labMT dataset with a focus on disagreemt and meaning stability, and was also responsible for the interpretation of Comparisons 1 and 2 of the Guardian results, exploring overall happiness differences across time periods and sections.
 
-Arav was responsible for great deal of the code for the quantitative exploration of the dataset. He worked closely with Tianye.
+Arav was responsible for great deal of the code for the quantitative exploration of the dataset. He computed the descriptive and inferential statistics for The Guardian corpus. He worked closely with Tianye.
 
 ## The usage of AI tools
  
