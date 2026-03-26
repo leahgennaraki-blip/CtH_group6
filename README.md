@@ -259,8 +259,8 @@ For each corpus there are 5000 labMT words with a recorded rank. This indicates 
 ![Figure 4](figures/heatmap_word_overlap.png)
 ***Figure 4:** Heatmap showing pairwise overlap between each corpus*
 
-![Figure 5](figures/scatter_twitter_rank_vs_nyt_rank.png)
-***Figure 5:** Scatter plot for frequency ranks and happiness scores for common words in Twitter and NYT. Words are plotted for their rank in twitter against rank in NYT. The colour scale represents happiness scores.*
+<!-- ![Figure 5](figures/scatter_twitter_rank_vs_nyt_rank.png)
+***Figure 5:** Scatter plot for frequency ranks and happiness scores for common words in Twitter and NYT. Words are plotted for their rank in twitter against rank in NYT. The colour scale represents happiness scores.* -->
 
 **Interpretation**
 
@@ -364,22 +364,24 @@ Table 1 shows summary statistics for each section‑period group. [Optional: com
 | World news| 2010‑13   | 18    | 5.897 | 0.225 | 5.291 | 5.797 | 5.919 | 6.016 | 6.235 | -0.985 | 2.031 |
 | World news| 2020‑23   | 18    | 5.845 | 0.319 | 5.271 | 5.629 | 5.850 | 6.064 | 6.443 | -0.064 | -0.491 |
 
+**Interpretation**: The sample sizes vary considerably across groups (Politics 2010‑13: n=79; World news 2020‑23: n=18). The distributions are generally symmetric (skewness near zero) with similar spread (SD ~0.2–0.3). Politics 2010‑13 has the highest mean happiness (6.06), while Opinion 2010‑13 has the lowest (5.75). These patterns set the stage for the inferential comparisons that follow.
+
 #### Visualisation
 
 Figure 1 shows the distribution of happiness scores for the two time periods (pooling sections). The density curves overlap substantially, but a slight shift towards lower scores in 2020‑23 is visible.
 
 ![Density of happiness by period](figures/happiness_distribution_by_period.png)  
-*Figure 1: Density plot of happiness scores for 2010‑13 and 2020‑23 (all sections combined).*
+***Figure 5:** Density plot of happiness scores for 2010‑13 and 2020‑23 (all sections combined).*
 
 Figure 2 displays the distributions by section (ignoring period). Politics articles tend toward higher happiness values, while Opinion shows a slightly lower peak.
 
 ![Density of happiness by section](figures/happiness_distribution_by_section.png)  
-*Figure 2: Density plot of happiness scores for World news, Politics, and Opinion (both periods pooled).*
+***Figure 6:** Density plot of happiness scores for World news, Politics, and Opinion (both periods pooled).*
 
 Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
 
 ![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
-*Figure 3: Boxplot of happiness scores for each section and period.*
+***Figure 7:** Boxplot of happiness scores for each section and period.*
 
 ### Inferential Statistics
 

@@ -269,48 +269,6 @@ def plot_combined_comparison3(df, save_path):
     plt.close()
     print(f"Saved combined comparison 3 plot to {save_path}")
 
-def plot_ridgeline(df, save_path):
-    """Create a ridgeline (joy) plot for happiness distributions by section and period."""
-    from scipy.stats import gaussian_kde
-    groups = df.groupby(["section_name", "period"])["happiness"]
-    group_list = []
-    for (section, period), data in groups:
-        if len(data) >= 5:
-            group_list.append((section, period, data))
-    # Order groups (you can customise order, here we keep as is)
-    group_list.sort(key=lambda x: (x[0], x[1]))
-    
-    fig, ax = plt.subplots(figsize=(10, 6))
-    y_offsets = np.arange(len(group_list))  # vertical positions
-    for i, (section, period, data) in enumerate(group_list):
-        # Compute KDE
-        kde = gaussian_kde(data)
-        x_vals = np.linspace(data.min(), data.max(), 200)
-        y_vals = kde(x_vals)
-        # Scale density to fit in a band (max height 0.8)
-        y_vals = y_vals / y_vals.max() * 0.8
-        # Plot filled area
-        ax.fill_between(x_vals, i, i + y_vals, alpha=0.6, label=f"{section} {period}")
-        # Add mean and median lines
-        mean_val = data.mean()
-        median_val = data.median()
-        # Draw horizontal line at baseline
-        ax.axhline(i, color='gray', linewidth=0.5)
-        # Add mean and median as vertical lines
-        ax.axvline(mean_val, ymin=i/len(group_list), ymax=(i+0.8)/len(group_list),
-                   color='red', linestyle='-', linewidth=1.5, alpha=0.7)
-        ax.axvline(median_val, ymin=i/len(group_list), ymax=(i+0.8)/len(group_list),
-                   color='darkblue', linestyle='--', linewidth=1.5, alpha=0.7)
-    ax.set_yticks(y_offsets + 0.4)
-    ax.set_yticklabels([f"{s} {p}" for s, p, _ in group_list])
-    ax.set_xlabel("Happiness score")
-    ax.set_ylabel("")
-    ax.set_title("Ridgeline plot: happiness distributions by section and period\n(red line = mean, blue dashed = median)")
-    plt.tight_layout()
-    plt.savefig(save_path)
-    plt.close()
-    print(f"Saved ridgeline plot to {save_path}")
-
 def main():
     # 1. Load and prepare data
     data_path = Path("data/processed/guardian_articles_with_scores.csv")
