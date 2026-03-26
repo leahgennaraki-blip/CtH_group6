@@ -380,7 +380,7 @@ Figure 2 displays the distributions by section (ignoring period). Politics artic
 
 Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
 
-![Boxplot of happiness by section and period](figures\happiness_by_section_and_period_boxplot.png)  
+![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
 ***Figure 7:** Boxplot of happiness scores for each section and period.*
 
 ### Inferential Statistics
