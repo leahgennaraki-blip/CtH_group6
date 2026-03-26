@@ -1,6 +1,6 @@
 # src/plot_happiness.py
 from pathlib import Path
-from analysis import plot_ridgeline_with_stats
+# from analysis import plot_ridgeline_with_stats
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -160,7 +160,7 @@ def main():
     axes[0].legend(handles=legend_handles, title='Legend', loc='upper left', fontsize=11)
 
     plt.tight_layout()
-    out3 = figures_dir / "happiness_faceted_density_by_section.png"
+    out3 = figures_dir / "happiness_by_section_and_period_boxplot.png.png"
     plt.savefig(out3, dpi=300)
     plt.close()
     print(f"Saved {out3}")

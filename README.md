@@ -190,7 +190,7 @@ We first imported the cleaned dataset using the function load_labmt from the dat
 #### Distribution of happiness scores
 
 ![Figure 1](figures/hist_happiness_average.png)
-***Figure 1:*** The histogram shows frequency of word appearences across happiness for all 10022 words in the labMT 1.0 dataset. 
+***Figure 1:*** Density‑normalised histogram of happiness scores for all words in the labMT 1.0 dataset, overlaid with a kernel density estimate (KDE). Vertical lines mark the mean (solid red) and mean ± 1 standard deviation (dashed dark red). A text box shows summary statistics. 
 
 **Interpretation:** Happiness scores in the labMT lexicon follow an approximately normal distribution centered slightly above neutral (~5.4), indicating a well-known positivity bias in human language where most words are neutral to mildly positive and strongly valenced words are comparatively rare.
 
@@ -219,7 +219,7 @@ Disagreement, in turn, reveals the limits of this consensus. The category of hig
 
 
 ![Figure 2](figures/scatter_happiness_vs_std.png)
-***Figure 2:** Scatter plot for word occurences by their happiness scores against happiness standard deviations*
+***Figure 2:** Scatter plot of happiness average (x‑axis) vs. standard deviation (y‑axis). The 15 words with the highest standard deviation are labelled*
 
 We deliberately chose polarizing words as an additional word category. While polarizing words are by definition highly contested, their  happiness score is near neutral. In contrast with other highly contested words, which may still lean slightly positive or negative overall, the polarizing category shows how strong disagreement can completely hide behind a neutral score, revealing polysemy or a deep meaning-making divide in society. Why is that important? Because it is hard to discern the specificities and intricacies of the conflict that occurs when trying to define meaning. While the divide in words whose original meaning is imply layered with a new one (for instance, `slut` as an offensive word being used as a form of empowerment within specific communities) still preserves a positive or negative inclination according to the strength of the metonymy-in-process, polarizing words reveal the symmetrical heterogeneity of the metonymies that have been embedded popular culture. Words like `pay` become problematized in relation to another concept that appears to be polarizing, namely `capitalism`. 
 
@@ -380,7 +380,7 @@ Figure 2 displays the distributions by section (ignoring period). Politics artic
 
 Figure 3 presents boxplots for each section‑period group, highlighting medians, quartiles, and outliers. The decrease in Politics over time is evident, while Opinion appears to increase slightly.
 
-![Boxplot of happiness by section and period](figures/happiness_by_section_and_period_boxplot.png)  
+![Boxplot of happiness by section and period](figures\happiness_by_section_and_period_boxplot.png)  
 ***Figure 7:** Boxplot of happiness scores for each section and period.*
 
 ### Inferential Statistics
@@ -393,12 +393,12 @@ The mean happiness across all sections in 2020‑23 was <!-- [DIFF]--> **-0.088*
 Fig 4 shows the bootstrap distribution of this difference; the red line is the observed difference, and the blue dashed lines mark the 95% CI.
 
 ![Bootstrap distribution of the overall period difference](figures/bootstrap_period_difference.png)  
-*Figure 4: Bootstrap distribution of the mean difference (2020‑23 minus 2010‑13). The red line is the observed difference, blue dashed lines are the 95% CI.*
+***Figure 8:** Bootstrap distribution of the mean difference (2020‑23 minus 2010‑13). The red line is the observed difference, blue dashed lines are the 95% CI.*
 
 Fig 5 displays the bootstrap distributions of the mean happiness for each period (all sections combined). The separation between the two distributions reflects the uncertainty around the period means and confirms the downward shift.
 
 ![Bootstrap distributions of means by period (pooling sections)](figures/bootstrap_means_by_period_pooled.png)  
-*Figure 5: Bootstrap distributions of the mean happiness for each period, showing the uncertainty around the period means (all sections combined).*
+***Figure 9:** Bootstrap distributions of the mean happiness for each period, showing the uncertainty around the period means (all sections combined).*
 
 **Critical analysis**
 The overall slight decrease in happiness noticed in our dataset between the two periods (2010-2013 and 2020-2023) could be partly attributed to broader changes in the global political and social context of each era. Especially the years after 2020 have seen several major global crises, such as the COVID-19 pandemic and geopolitical conflicts such as the wars in Ukraine and Gaza. These events could be used to think of why there could be a general negative sentiment shift in media coverage. It is important to mention that the point is not to conclude that the second period has more extreme events or has seen worse incidents but we could use major crisis events during the second interval to begin to explain the emotional shifts in our examined dataset.
@@ -449,8 +449,12 @@ Pairwise comparisons (ignoring period) reveal:
 
 Thus, Politics articles consistently score higher than the other two sections, while World news and Opinion are statistically similar.
 
+![Bootstrap distribution of the overall period difference](figures/combined_comparison2.png)  
+***Figure 10:** Bootstrap distribution of the mean difference (Politics minus World news, Opinion minus world news, Opinion minus Politics). The red line is the observed difference, blue dashed lines are the 95% CI.*
+
+
 ![Bootstrap distributions of means by section (pooling periods)](figures/bootstrap_means_by_section.png)  
-*Figure 6: Bootstrap distributions of the mean happiness for each section, showing the sampling variability of the section means.*
+***Figure 11:** Bootstrap distributions of the mean happiness for each section, showing the sampling variability of the section means.*
 
 **Critical analysis**
 
@@ -495,12 +499,12 @@ Looking at sections overall helps to explain differences in reporting styles and
 Fig 7 presents the bootstrap distributions of the mean for each section‑period group, allowing direct visual comparison of the uncertainty and central tendency for the two periods within each section. The separation (or overlap) between the 2010‑13 and 2020‑23 distributions for each section reflects the evidence for a change
 
 ![Bootstrap distributions of means by section and period](figures/bootstrap_means_by_section_and_period.png)  
-*Figure 7: Bootstrap distributions of the mean happiness for each section‑period group.*
+***Figure 12:** Bootstrap distributions of the mean happiness for each section‑period group.*
 
 Fig 8 shows the point estimates with 95% confidence intervals for each group, making it easy to see the magnitude and uncertainty of the differences.
 
 ![Mean happiness by section and period with 95% CI](figures/mean_ci_by_section_period.png)  
-*Figure 8: Point plot with 95% confidence intervals for each section‑period group.*
+***Figure 13:** Point plot with 95% confidence intervals for each section‑period group.*
 
 **Critical analysis**
 
@@ -643,14 +647,14 @@ By examining our sample of The Guardian articles as they appear in [](data/proce
 Regarding the entirety of our sample of The Guardian, the intensity of populism (*Figure 9:* Left Panel) in each senction has increased in a largely proportinate manner in 2020-2023 compared to 2010-2013, with Politics being the section with the most populist terms per 1000 words, followed by Opinion and World News. However, this symmetry does not translate to the prevalence of populist articles (*Figure 9:* Right Panel). While the percentage of World News articles icluding at least one populist term has stayed exactly the same (at least to the 6th decimal), Politics has seen an increase from just under 40% to over 45%. Although a rise in populism in article with political content can be on par with populist and nationalist rhetoric in the UK political scene, what seems particularly interesting (and quite concerning) is the surge of populist articles in The Guardian's Opinion section, which doubled (from  16% to just over 38%).
 
 ![Intensity and Prevalence of populist terms in entirety of sample](figures/fig_populism_whole_sample_pointline.png)  
-*Figure 9: The Intensity and Prevalence of populist terms per section per period in the entirety of our sample of the Guardian.*
+***Figure 14:** The Intensity and Prevalence of populist terms per section per period in the entirety of our sample of the Guardian.*
 
 By focusing on the populist articles per section per period, we can gauge what the aforementioned trends mean for the subset of articles in question (*Figure 10*). Such a 'zooming in' is meant to supplement and help with the interpretation of the populism measurements in the overall sample. Populism intensity of populist articles in Politics and World News shows an increase of approximately 1 and 1.5 words per 1000 words respectively (*Figure 10:* Left Panel). Given the moderate increase in the intensity and prevalence of populism in both categories relating to the entire sample (*Figure 9*), such a trend seems logical. However, what we consider particularly worth mentioning is that the intensity of populism in populist Opinion articles experienced a drop of about 0.7 per 1000 words (*Figure 10:* Left Panel), meaning that while more articles in 2020-2023 contained at least one populist term (*Figure 9:* Right Panel), that upsurge was mitigated by a lower subset intensity.
 
 In addition to reporting on populist tendencies in The Guardian, the right panel in *Figure 10* relates populist articles to their mean happiness scores, as measured using the labMT 1.0 dataset. Overall, the happiness of populist articles seems to converge in 2020-2023, with the happiest section, namely 2010-2013 World News, showing a 0.3 drop in the 1-9 scale in 2020-2023. Although the populist Opinions section in 2010-2013 appears to be the least happy instance in the data, it also appears to have seen the sharpest increase in happiness, becomign the happiest one in 2020-2023. The increase in populist Politics articles' happiness is limited to the second decimal, marking a steady emotional register through the years. 
 
 ![Intensity and Mean Happiness Score in articles with >= 1 populist term](figures/fig_populism_populist_articles_pointline.png)  
-*Figure 10: The Intensity of populist terms and Mean Happiness Score of articles with at least one populist term.*
+***Figure 15:** The Intensity of populist terms and Mean Happiness Score of articles with at least one populist term.*
 
 Relating back to the happiness scores per section per article in **Comparison 3** (*Figure 7*), while in the entire sample of The Guardian the 2010-2013 Politics section was the happiest, experiencing a drop in 2020-2023, among populist articles it is 2010-2013 World News that has the first place, with a visible drop in 2020-2023 which does not reflect in the overall corpus. Saddest sections in both the entire sample and the populist subset is Opinion 2010-2013. However, populist Opinion articles become slighly happier than Politics in 2020-2023, due to the former's sharper increase in happiness. This is not matched in the overall sample, with Politics remaining the happiest section per period.
 
